@@ -48,6 +48,7 @@ print("hi there!")
 # it will move on to next line after running the line
 # to run multiple lines: select multiple lines, press CTRL+ENTER or CMD+ENTER
 
+# using shortcuts ==============================================================
 # Shortcut - copy line: SHIFT+ALT+UP/DOWN (Windows) or CMD+OPTION+UP/DOWN (Mac)
 # Shortcut - move a line: ALT+UP/DOWN to move a line up or down
 
