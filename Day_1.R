@@ -1,4 +1,4 @@
-# R INTRODUCTION - DAY 1 #######################################################
+# R INTRO - DAY 1 ##############################################################
 # Today's Topic
 # - Hands on R
 # - Basic Syntax
@@ -16,12 +16,14 @@
 # - Built-in sample datasets
 
 
+
 # HELLO WORLD ##################################################################
 print("Hello")
 print('Hello again')
 greeting <- "Hello there!"
 # use TAB for code completion
 print(greeting)
+
 
 
 # R PROJECT & R SCRIPT #########################################################
@@ -31,6 +33,7 @@ print(greeting)
 # CREATE R SCRIPT: after project created, choose File -> New -> R Script
 # to browse/open files, 
 # reach out to the lower right windows, choose 'Files' tab
+
 
 
 # RUN CODES IN YOUR R SCRIPT ###################################################
@@ -45,11 +48,18 @@ print("hi there!")
 # it will move on to next line after running the line
 # to run multiple lines: select multiple lines, press CTRL+ENTER or CMD+ENTER
 
+# Shortcut - copy line: SHIFT+ALT+UP/DOWN (Windows) or CMD+OPTION+UP/DOWN (Mac)
+# Shortcut - move a line: ALT+UP/DOWN to move a line up or down
+
+# More useful keyboard shortcuts
+browseURL("https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts")
+
 
 # HELP #########################################################################
 # use ? with the command
 ?toupper
 ?is.vector
+
 
 
 # COMMENTS #####################################################################
@@ -63,6 +73,7 @@ print("hi there!")
 i <- 100 # This is also a comment
 
 
+
 # HEADER #######################################################################
 # you can use header to make your code more organized 
 # divide your codes into visible sections
@@ -71,6 +82,7 @@ i <- 100 # This is also a comment
 # use '#' for level one header
 # use '##' for level two header
 # use '###' for level three header
+
 
 
 # VARIABLES NAMING #############################################################
@@ -86,6 +98,7 @@ i <- 100 # This is also a comment
 my.name <- "April"
 MY.NAME <- "Benny"
 my_name <- "Cathy"
+
 
 
 # VARIABLES ASSIGNMENT #########################################################
@@ -116,6 +129,7 @@ rm(city5)
 rm(list =ls())
 
 
+
 # PRINT ########################################################################
 print(city1)
 cat(city1, city2, city3, city4, city5)
@@ -127,6 +141,7 @@ age <- 12L
 # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sprintf
 sprintf("My namne is %s. %s %s. I am %i year old.", 
         last.name, first.name, last.name, age)
+
 
 
 # DATA TYPE ####################################################################
@@ -153,7 +168,7 @@ is.vector(is.student)
 is.vector(age)
 is.vector(fruits)
 
-# typeof(), class() ############################################################
+# CHECK TYPE: typeof(), class() ################################################
 # typeof() determines the (R internal) type or storage mode of any object
 # class() returns the values of the class attribute of an R object
 # mode() the mode specifies how the object is stored in memory, same to typeof()
@@ -216,6 +231,7 @@ myarray
 myarray[,,1]
 myarray[,,2]
 myarray[1,1,2]
+
 
 # FACTORS  #####################################################################
 # factors are the r-objects which are created using a vector. 
@@ -285,13 +301,14 @@ df[1:2, 1:2]
 # combine two data-frame: use rbind(df1, df2) function
 
 
+
 # OPERATORS   ##################################################################
 # - Arithmetic Operators
 # - Relational Operators
 # - Logical Operators
 # - Assignment Operators
 
-# Arithmetic Operators
+# arithmetic operators =========================================================
 v1 = c(1, 2, 3, 4)
 v2 = c(100, 200, 300, 400)
 print(v1+10)
@@ -306,7 +323,7 @@ print(v2%%(v1+9))
 print(v2^v1)
 
 
-# Relational Operators
+# relational operators =========================================================
 # Each element of the first vector is compared to
 #   the corresponding element of the second vector. 
 # The result of comparison is a Boolean value.
@@ -320,7 +337,8 @@ print(v1>=v2)
 print(v1<=v2)
 print(v1>7)
 
-# Logical Operators
+
+# logical operators ============================================================
 # - & : and 
 # - | : or
 # - ! : not
@@ -349,7 +367,8 @@ r%%2
 (r%%2==0)
 r[r%%2==0 & r>50]
 
-# Assingment Operators
+
+# assignment operators =========================================================
 # leftward assignment: =, <-, <<-
 # rightward assignment: ->, ->>
 
@@ -361,6 +380,7 @@ s
 # we previously defined: fruits <- c("apple", "banana", "orange")
 "apple" %in% fruits # return TRUE
 "pear" %in% fruits # return FALSE
+
 
 
 # PROGRAM CONTROL: DECISION ####################################################
@@ -383,6 +403,8 @@ if(number >= 1000) {
   print("it's a 1 digit number ")
 }
 
+
+
 # PROGRAM CONTROL: LOOP ########################################################
 for (fruit in fruits){
   print(fruit)
@@ -393,6 +415,8 @@ while (number < 10) {
   print(number)
   number = number + 1
 }
+
+
 
 # FUNCTION #####################################################################
 # define your own function
@@ -426,10 +450,11 @@ substring(my.name, 4) # returns "nny"
 
 # formatting numbers
 salary = 12345.6789
+typeof(salary)
 format(salary, digits=5) # gives 12346
 format(salary, digits=6) # gives 12345.7
 format(salary, nsmall=2) # gives 12345.68
-format(salary, 2) # gives 12345.68
+?format
 
 # c() function
 about.me = c("Johnny", 25, TRUE)
@@ -455,6 +480,7 @@ sort(numbers)
 sort(numbers, decreasing = TRUE)
 
 
+
 # SAMPLE DATASET ###############################################################
 
 # load from built-in library
@@ -468,3 +494,12 @@ hist(iris$Sepal.Width)
 plot(iris)
 
 
+# PREPARE FOR NEXT SESSIONS ####################################################
+# We will talk about packages next session
+# Downloading packages will take some times
+# Run the following command to download packages
+# that we will need for next sessions 
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(pacman, party, psych, rio, tidyverse)
+
+# You will see console displaying packages download one by one
