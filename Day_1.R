@@ -126,8 +126,8 @@ print(ls()) # list all variables
 print(ls(pattern="city")) #list variables with name start 'city'
 
 # clear all variables
-rm(city5)
-rm(list =ls())
+rm(city6)
+# rm(list =ls()) # remove all variables
 
 
 
@@ -157,7 +157,7 @@ sprintf("My namne is %s. %s %s. I am %i year old.",
 is.student <- TRUE # logical
 height <- 182.5
 age <- 20L # integer
-c <- 'A' # character
+c <- "A" # character
 boot.title <- "Forrest Gump" # character
 bytes <- charToRaw("ABC") # raw bytes of ASCII codes
 # vector: a series of value, use c()
@@ -191,9 +191,8 @@ typeof(typeof) # return closure
 # it could include vectors, functions and even another list inside it
 my.list <- list(fruits, height, age)
 my.list
-my.list[1]
+my.list[1] # index starts at 1
 my.list[2]
-my.list[0]
 my.list[4]
 
 
@@ -203,10 +202,8 @@ r
 r[1]
 length(r)
 r[length(r)]
-r2 = seq(1, 10, by=2)
-r2
-r3 = r2 * 10
-r3
+(r2 = seq(1, 10, by=2))
+(r3 = r2 * 10)
 
 
 # MATRICES #####################################################################
@@ -236,12 +233,13 @@ myarray[1,1,2]
 
 # FACTORS  #####################################################################
 # factors are the r-objects which are created using a vector. 
-# tt stores the vector along with the distinct values of the elements 
+# to stores the vector along with the distinct values of the elements 
 # factors are created using the factor() function
 # the nlevels() functions gives the count of levels
 cities <- c('Shenzhen','Beijing','Shanghai','Shenzhen','Qingdao','Guangzhou','Beijing')
 factor_cities <- factor(cities)
 factor_cities
+levels(factor_cities)
 nlevels(factor_cities)
 
 
@@ -280,8 +278,9 @@ df$name # getting the 'name' column
 df$age # getting the age column
 df[1,] # get the first row
 is.vector(df[1,])
+class(df[1,])
 df[,1] # get the first col
-df[1] # get the extra col, return as data.frame
+df[1] # get the first col, return as data.frame
 # the above seem to give identical result, their types are different
 # let's check the retrun types
 cat(class(df[,1]), class(df[1]))
@@ -312,11 +311,11 @@ df[1:2, 1:2]
 # arithmetic operators =========================================================
 v1 = c(1, 2, 3, 4)
 v2 = c(100, 200, 300, 400)
-print(v1+10)
+print(v1+10) # add 10 to each element
 print(v1-4)
 print(v1*10)
 print(v1/2)
-print(v1+v2)
+print(v1+v2) # two vectors must be same length
 print(v1-v2)
 print(v1*v2)
 print(v1/v2)
@@ -330,7 +329,7 @@ print(v2^v1)
 # The result of comparison is a Boolean value.
 v1 = c(1,   3,   5, 7, 9)
 v2 = c(100, 300, 5, 1, 1)
-print(v1>v2)
+print(v1>v2) # one to one comparison of each element
 print(v1<v2)
 print(v1==v2)
 print(v1!=v2)
@@ -351,8 +350,8 @@ print(v3&v4)
 print(v3|v4)
 print(!v3)
 print(!v4)
-print(v3&&v4)
-print(v3||v4)
+print(v3&&v4) # perform operation on the first element
+print(v3||v4) # perform operation on the first element
 
 # when the length of two vector is not the same
 # the shorter vector will duplicate itself to match 
@@ -364,7 +363,7 @@ print(v5+v6) # v6 becomes c(1,2,1,2,1,2) while performing the operation
 r = 1:100
 r
 (r>50)
-r%%2
+(r%%2)
 (r%%2==0)
 r[r%%2==0 & r>50]
 
@@ -420,11 +419,6 @@ while (number < 10) {
 
 
 # FUNCTION #####################################################################
-# define your own function
-mysquare <- function(number) {
-  return (number * number)
-}
-print(mysquare(3))
 
 # built-in functions
 r = 1:100
@@ -462,20 +456,24 @@ about.me = c("Johnny", 25, TRUE)
 about.me # number and boolean are converted to characters
 about.me[1] # index starts at 1
 
-# filterig vectors 
-days <- c("Sun","Mon","Tue","Wed","Thurs","Fri","Sat")
-selected_days = days[c(1,3,5)]
-selected_days
-selected_days = days[c(T,F,F,F,F,F,T)]
-selected_days
-selected_days = days[c(0,0,0,0,0,1,1)]
-selected_days
-selected_days = days[c(-1,-7)]
-selected_days
+# define your own function =====================================================
+mysquare <- function(number) {
+  return (number * number)
+}
+print(mysquare(3))
 
-# sorting vector
-sort(days)
-sort(days, decreasing = TRUE)
+
+# filterig vectors =============================================================
+days <- c("Sun","Mon","Tue","Wed","Thurs","Fri","Sat")
+(selected_days = days[c(1,3,5)])
+(selected_days = days[c(T,F,F,F,F,F,T)])
+(selected_days = days[c(0,0,0,0,0,1,1)])
+(selected_days = days[c(-1,-7)])
+
+
+# sorting vector ===============================================================
+sort(days) # alphabet sorting
+sort(days, decreasing = TRUE) # alphabet sorting
 numbers = c(1,9,5,7,3)
 sort(numbers)
 sort(numbers, decreasing = TRUE)
@@ -500,6 +498,7 @@ plot(iris)
 # Downloading packages will take some times
 # Run the following command to download packages
 # that we will need for next sessions 
+
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(pacman, party, psych, rio, tidyverse)
 

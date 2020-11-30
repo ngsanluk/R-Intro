@@ -1,10 +1,14 @@
 # R INTRO - DAY 2 ##############################################################
-# - Sample dataset
-# - Using Package: 
-# - Reading Data: CSV, Excel, JSON
-# - Charts & Graphics
-# - Statistics Features: Mean, Median, Linear Regression
-# - Useful Resources
+# - Built-in dataset
+# - Reading Data from File - CSV, EXCEL, JSON
+# - Data Visualization
+# - Using Colors
+# - Using Packages
+# - Clean up
+# - Handling Complex Command
+# - R Markdown
+# - Statistics Features: Mean, Median, Regression
+# - Further Learning Resources
 
 
 
@@ -32,7 +36,7 @@ head(iris)
 is.data.frame(species)
 is.vector(species)
 class(species)
-unique(species)
+levels(species)
 
 # basic statistics 
 max(iris$Sepal.Length)
@@ -62,7 +66,7 @@ dimnames(allowance)
 print(allowance) 
 # you can also reach out to the environment tab, 
 # and click variable name to show the data-frame and GUI manner
-?read_csv
+?read.csv
 
 # subset() function - let you perform SQL like query
 subset(allowance, Basic>120000)
@@ -152,7 +156,7 @@ head(df.iris)
 hist(df.iris$Sepal.Width)
 
 # specifying a output file
-png(file = "output/scatterplot.png") 
+png(file = "output/scatterplot3.png") 
 
 plot(x = df.iris$Sepal.Length,
      y = df.iris$Petal.Length,
@@ -224,10 +228,12 @@ browseURL("https://cran.r-project.org/web/packages/index.html")
 # to install a package
 # syntax - install.packages("Package Name")
 # to install multiple packages - install.packages("Package1", "Package2")
-install.packages("xlsx") # it will take a while download requested packages
+# e.g 
+# install.packages("xlsx") 
+# it will take a while download requested packages
 
 # to remove a package
-remove.packages("xlsx")
+# remove.packages("xlsx")
 
 
 
@@ -240,7 +246,9 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(pacman, party, psych, rio, tidyverse)
 
 # reading csv
-(df <- read_csv("data/allowance.csv"))
+(df <- read_csv("data/allowance.csv")) # read_csv is an addon from tidyverse/readr
+?read_csv
+?readr
 summary(df)
 str(df)
 head(df)
@@ -296,6 +304,8 @@ subset(records,
 # When you are done with experiencing some packages, unload them to free memory
 
 # clean up variables ===========================================================
+age <- 22
+city <- "HK"
 ls() # show the variables in project environment
 rm(list = c("age", "city")) # remove "age", "city" variable from memory
 rm(list = ls()) # remove all the variables
@@ -343,6 +353,7 @@ pacman::p_load(pacman, rio, tidyverse)
 
 # make sure you've load the required addons to run following command
 as.double(text) %>% sqrt() %>% round(2) 
+# compare to:  round(sqrt(as.double(text)), 2)
 
 # put in multiple lines to make it more readable
 as.double(text) %>% 
