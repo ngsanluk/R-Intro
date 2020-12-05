@@ -16,7 +16,6 @@
 # - Built-in sample datasets
 
 
-
 # HELLO WORLD ##################################################################
 print("Hello")
 print('Hello again')
@@ -31,7 +30,7 @@ print(greeting)
 # however, create R Studio Project & R Script will be more managable
 # CREATE PROJECT: choose File -> New Project
 # CREATE R SCRIPT: after project created, choose File -> New -> R Script
-# to browse/open files, 
+# to browse/open files,
 # reach out to the lower right windows, choose 'Files' tab
 
 
@@ -43,7 +42,7 @@ print(greeting)
 print("hi there!")
 # press 'Run' button
 # keyboard shortcut:
-# On Windows:  CTRL+ENTER 
+# On Windows:  CTRL+ENTER
 # On Mac:      COMMAND+ENTER
 # it will move on to next line after running the line
 # to run multiple lines: select multiple lines, press CTRL+ENTER or CMD+ENTER
@@ -76,7 +75,7 @@ i <- 100 # This is also a comment
 
 
 # HEADER #######################################################################
-# you can use header to make your code more organized 
+# you can use header to make your code more organized
 # divide your codes into visible sections
 # easier to navigate
 # reach out for 'document outline' for quick navigation to code sections
@@ -87,7 +86,7 @@ i <- 100 # This is also a comment
 
 
 # VARIABLES NAMING #############################################################
-# Variables are nothing but reserved memory locations to store values. 
+# Variables are nothing but reserved memory locations to store values.
 # When you create a variable, you reserve some space in memory.
 # A valid variable name consists of letters, numbers, dot or underline
 # A variable name starts with a letter or dot
@@ -140,7 +139,7 @@ age <- 12L
 # use sprintf for c style printing
 # more sprintf at below link
 # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sprintf
-sprintf("My namne is %s. %s %s. I am %i year old.", 
+sprintf("My namne is %s. %s %s. I am %i year old.",
         last.name, first.name, last.name, age)
 
 
@@ -162,9 +161,9 @@ boot.title <- "Forrest Gump" # character
 bytes <- charToRaw("ABC") # raw bytes of ASCII codes
 # vector: a series of value, use c()
 fruits <- c("apple", "banana", "orange")
-# is.vector() check if the tested object (obj) is a vector or expression 
+# is.vector() check if the tested object (obj) is a vector or expression
 # that has either no attributes or only the names attribute set
-# 
+#
 is.vector(is.student)
 is.vector(age)
 is.vector(fruits)
@@ -187,7 +186,7 @@ typeof(typeof) # return closure
 
 
 # LIST #########################################################################
-# a list is an R-object which can contain many different types of elements 
+# a list is an R-object which can contain many different types of elements
 # it could include vectors, functions and even another list inside it
 my.list <- list(fruits, height, age)
 my.list
@@ -207,7 +206,7 @@ r[length(r)]
 
 
 # MATRICES #####################################################################
-# A matrix is a two-dimensional rectangular data set. 
+# A matrix is a two-dimensional rectangular data set.
 # It can be created using a vector input to the matrix function.
 m1 = matrix( c(1:12), nrow=3)
 m1
@@ -220,8 +219,8 @@ m3
 # ARRAYS #######################################################################
 # matrices are confined to two dimensions
 # arrays can be of any number of dimensions
-# the array function takes a dim attribute 
-# which creates the required number of dimension. 
+# the array function takes a dim attribute
+# which creates the required number of dimension.
 # In the below example we create an array with two elements
 # which are 3x3 matrices each.
 myarray <- array(c(1:18), dim = c(3, 3, 2))
@@ -232,8 +231,8 @@ myarray[1,1,2]
 
 
 # FACTORS  #####################################################################
-# factors are the r-objects which are created using a vector. 
-# to stores the vector along with the distinct values of the elements 
+# factors are the r-objects which are created using a vector.
+# to stores the vector along with the distinct values of the elements
 # factors are created using the factor() function
 # the nlevels() functions gives the count of levels
 cities <- c('Shenzhen','Beijing','Shanghai','Shenzhen','Qingdao','Guangzhou','Beijing')
@@ -267,7 +266,7 @@ str(df) # print the structure of a data-frame
 summary(df) # print the summary information of a data-frame
 nrow(df) # number of row
 ncol(df) # number of column
-length(df) # number of variable, 
+length(df) # number of variable,
 
 # type information of dataframe
 class(df) # returns data.frame
@@ -325,7 +324,7 @@ print(v2^v1)
 
 # relational operators =========================================================
 # Each element of the first vector is compared to
-#   the corresponding element of the second vector. 
+#   the corresponding element of the second vector.
 # The result of comparison is a Boolean value.
 v1 = c(1,   3,   5, 7, 9)
 v2 = c(100, 300, 5, 1, 1)
@@ -339,7 +338,7 @@ print(v1>7)
 
 
 # logical operators ============================================================
-# - & : and 
+# - & : and
 # - | : or
 # - ! : not
 # && : compare only the first element
@@ -354,9 +353,9 @@ print(v3&&v4) # perform operation on the first element
 print(v3||v4) # perform operation on the first element
 
 # when the length of two vector is not the same
-# the shorter vector will duplicate itself to match 
+# the shorter vector will duplicate itself to match
 v5 <- c(100, 200, 300, 400, 500, 600)
-v6 <- c(1,2) 
+v6 <- c(1,2)
 print(v5+v6) # v6 becomes c(1,2,1,2,1,2) while performing the operation
 
 # filtering with logical operator
@@ -434,7 +433,7 @@ c <- "You"
 print(paste(a,b,c))
 print(paste(a,b,c, sep = "-"))
 
-# to upper case, to lower case, 
+# to upper case, to lower case,
 my.name <- "Johnny"
 toupper(my.name) # to upper case
 tolower(my.name) # to lower case
@@ -497,7 +496,7 @@ plot(iris)
 # We will talk about packages next session
 # Downloading packages will take some times
 # Run the following command to download packages
-# that we will need for next sessions 
+# that we will need for next sessions
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(pacman, party, psych, rio, tidyverse)
