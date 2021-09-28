@@ -14,7 +14,7 @@
 
 # SAMPLE DATASET ###############################################################
 
-# load from built-in library from base R
+# load from built-in library (from base R)
 library("datasets") # or require("datasets")
 # library() vs. require() 
 # The library() by default returns an error if the requested package does not exist.
@@ -32,7 +32,7 @@ typeof(iris)
 is.data.frame(iris)
 class(iris)
 head(iris)
-(species <- iris$Species)
+(species <- iris$Species) # extracting column/columns
 is.data.frame(species)
 is.vector(species)
 class(species)
@@ -51,7 +51,7 @@ sd(iris$Sepal.Length) # standard deviation
 # READING DATA #################################################################
 
 # show current working directory
-getwd()
+getwd() # get working directory
 # to set working directory, use setwd()
 
 # reading CSV File =============================================================
@@ -68,7 +68,7 @@ print(allowance)
 # and click variable name to show the data-frame and GUI manner
 ?read.csv
 
-# subset() function - let you perform SQL like query
+# subset() function - let you perform SQL like filtering query
 subset(allowance, Basic>120000)
 subset(allowance, Basic>120000, select = c(Assessment_Year, Basic))
 subset(allowance, Basic==min(Basic), select = c(Assessment_Year, Basic))
@@ -76,14 +76,28 @@ subset(allowance, Basic==max(Basic), select = c(Assessment_Year, Basic))
 
 # reading Excel File ===========================================================
 # Reading Excel could be troublesome
-# There are many version for excel File
+# There are many version for excel Files
 # Excel are seldom pure tabular data. Usually embedded with formatting data.
 install.packages("xlsx")
 library("xlsx")
 intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
 summary(intakes)
-graduate <- intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
-str(graduate)
+graduates <- intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
+str(graduates)
+colnames(graduates)
+head(graduates)
+data.frame(graduates$Academic.year ,graduates$Under.graduate)
+subset(graduates, Under.graduate<10000, select = c(Academic.year, Under.graduate))
+subset(graduates, 
+       Under.graduate<10000 & Under.graduate>5000, 
+       select = c(Academic.year, Under.graduate)
+       )
+substring(graduates$Academic.year, 1, 4)
+typeof(substring(graduates$Academic.year, 1, 4))
+substring(graduates$Academic.year, 1, 4) > 2010
+as.numeric(substring(graduates$Academic.year, 1, 4)) - 2000
+
+
 
 # reading JSON File ============================================================
 # JSON file stores data as text in human-readable format. 
@@ -134,19 +148,19 @@ hist(allowance$Basic,
 
 
 # line graphs ==================================================================
-# install.packages("xlsx")
-# library("xlsx")
+# install.packages("xlsx") if not already installed
+# library("xlsx") if not already loaded
 # intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
 # summary(intakes)
-graduate <- intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
-str(graduate)
-head(graduate)
-plot(graduate$Under.graduate, 
+graduates <- intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
+str(graduates)
+head(graduates)
+plot(graduates$Under.graduate, 
      type="o"
      )
 
 # bar plot =====================================================================
-barplot(graduate$Under.graduate)
+barplot(graduates$Under.graduate)
 
 
 # scatter plots ================================================================
@@ -200,7 +214,7 @@ browseURL("https://www.r-bloggers.com/2012/10/palettes-in-r/")
 
 # color tips ==================================================================
 # Color is very a dominant design tool to guide user's attention
-# Over-use or mistakenly use of colors will be on confusing. Be careful
+# Over-use or mistakenly use of colors will be confusing. Be careful!
 # Some colors are culture bounded.  Red is good for Chinese or east Asia
 # Red is definitely NOT good in financial reporting
 
@@ -245,7 +259,7 @@ browseURL("https://cran.r-project.org/web/packages/index.html")
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(pacman, party, psych, rio, tidyverse)
 
-# reading csv
+# alternative solution for reading csv
 (df <- read_csv("data/allowance.csv")) # read_csv is an addon from tidyverse/readr
 ?read_csv
 ?readr
@@ -340,12 +354,12 @@ plot(x = df.iris$Sepal.Length,
 
 
 # piping commands ==============================================================
-# nested function called become really messy and difficult to read
-# especially when each function have multiple parameters.
+# nested function calls become really messy and difficult to read
+# especially when each function has multiple parameters.
 text = "1234.56789"
 round(sqrt(as.double(text)), 2)
 
-# we need package add on to enable piping command
+# we need extra package to enable piping command
 # built-in command to load addon: library("tidyverse")
 # we've downloaded pacman (package manager) to make things easier
 if (!require("pacman")) install.packages("pacman")
@@ -436,8 +450,12 @@ class(relation)
 # find weight of a person with height 175
 # use predict() fucntion for predicting
 h <- data.frame(x=175)
+h
 (w <- predict(relation, h))
 
+h2 <- data.frame(x=c(175, 180, 190))
+h2
+(w2 <- predict(relation, h2))
 
 # plot the regression 
 plot(y,x,

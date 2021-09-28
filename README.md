@@ -1,2 +1,25 @@
 # R-Intro
-R Introduction Course
+Covers the following topics
+- Hands on R
+- Basic Syntax
+- Using Help
+- Variables
+- Data Types
+- Using Comments
+- Operators
+- Strings
+- Vectors, Lists, Matrices
+- Data Frames
+- Condition
+- Loops
+- Functions
+- Built-in sample datasets
+- Reading Data from File - CSV, EXCEL, JSON
+- Data Visualization
+- Using Colors
+- Using Packages
+- Clean up
+- Handling Complex Command
+- R Markdown
+- Statistics Features: Mean, Median, Regression
+- Further Learning Resources- 
