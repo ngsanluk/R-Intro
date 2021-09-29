@@ -152,9 +152,10 @@ hist(allowance$Basic,
 # library("xlsx") if not already loaded
 # intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
 # summary(intakes)
-graduates <- intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
+graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
 str(graduates)
 head(graduates)
+plot(graduates$Under.graduate)
 plot(graduates$Under.graduate, 
      type="o"
      )
@@ -188,23 +189,23 @@ dev.off()
 colors() # display a long list of pre-defined color names
 
 # color syntax =================================================================
-barplot(graduate$Under.graduate, col = "tomato") # using color name string
-barplot(graduate$Under.graduate, col = rgb(.8, .8, 0)) # use rgb() function
-barplot(graduate$Under.graduate, col = rgb(200, 0, 0, max=255))
-barplot(graduate$Under.graduate, col = "#009900") # use RGB Hex Code String
+barplot(graduates$Under.graduate, col = "tomato") # using color name string
+barplot(graduates$Under.graduate, col = rgb(.8, .8, 0)) # use rgb() function
+barplot(graduates$Under.graduate, col = rgb(200, 0, 0, max=255))
+barplot(graduates$Under.graduate, col = "#009900") # use RGB Hex Code String
 colors()[400]
-barplot(graduate$Under.graduate, col = colors()[400]) # use color index
+barplot(graduates$Under.graduate, col = colors()[400]) # use color index
 
 # use TWO color alternatively
-barplot(graduate$Under.graduate, col = c("navy", "orange")) 
+barplot(graduates$Under.graduate, col = c("navy", "orange")) 
 
 # using  palette ===============================================================
 ?palette
 palette()
-barplot(graduate$Under.graduate, col = 1:7) 
+barplot(graduates$Under.graduate, col = 1:7) 
 
 # using other built-in palette
-barplot(graduate$Under.graduate, col = heat.colors(12)) 
+barplot(graduates$Under.graduate, col = heat.colors(12)) 
 
 # colors for R =================================================================
 browseURL("https://datalab.cc/rcolors") # you can download the color list

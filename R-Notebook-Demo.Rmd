@@ -27,3 +27,9 @@ subset(graduates,
        )
 ```
 
+```{r}
+plot(graduates$Under.graduate, 
+     type="o"
+     )
+```
+
