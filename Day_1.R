@@ -48,7 +48,7 @@ print("hi there!")
 # to run multiple lines: 
 # select multiple lines, press CTRL+ENTER or CMD+ENTER
 
-# using shortcuts ==============================================================
+## using shortcuts ==============================================================
 # Shortcut - copy line: 
 # SHIFT+ALT+UP/DOWN (Windows) or CMD+OPTION+UP/DOWN (Mac)
 # 
@@ -311,7 +311,7 @@ df[1:2, 1:2]
 # - Logical Operators
 # - Assignment Operators
 
-# arithmetic operators =========================================================
+## arithmetic operators =========================================================
 v1 = c(1, 2, 3, 4)
 v2 = c(100, 200, 300, 400)
 print(v1+10) # add 10 to each element
@@ -326,7 +326,7 @@ print(v2%%(v1+9))
 print(v2^v1)
 
 
-# relational operators =========================================================
+## relational operators =========================================================
 # Each element of the first vector is compared to
 #   the corresponding element of the second vector.
 # The result of comparison is a Boolean value.
@@ -341,7 +341,7 @@ print(v1<=v2)
 print(v1>7) # compare each element from the list to '7'
 
 
-# logical operators ============================================================
+## logical operators ============================================================
 # - & : and
 # - | : or
 # - ! : not
@@ -365,13 +365,13 @@ print(v5+v6) # v6 becomes c(1,2,1,2,1,2) while performing the operation
 # filtering with logical operator
 r = 1:100
 r
-(r>50): generates a list of TRUE or FALSE values
+(r>50) # generates a list of TRUE or FALSE values
 (r%%2)
 (r%%2==0)
 r[r%%2==0 & r>50] # multiple conditions
 
 
-# assignment operators =========================================================
+## assignment operators =========================================================
 # leftward assignment: =, <-, <<-
 # rightward assignment: ->, ->>
 
@@ -459,21 +459,21 @@ about.me = c("Johnny", 25, TRUE)
 about.me # number and boolean are converted to characters
 about.me[1] # index starts at 1
 
-# define your own function =====================================================
+## define your own function =====================================================
 mysquare <- function(number) {
   return (number * number)
 }
 print(mysquare(3))
 
 
-# filterig vectors =============================================================
+## filterig vectors =============================================================
 days <- c("Sun","Mon","Tue","Wed","Thurs","Fri","Sat")
 (selected_days = days[c(1,3,5)])
 (selected_days = days[c(T,F,F,F,F,F,T)])
 (selected_days = days[c(-1,-7)]) # use '-" sign to indicate exclusion of element
 
 
-# sorting vector ===============================================================
+## sorting vector ===============================================================
 sort(days) # alphabet sorting
 sort(days, decreasing = TRUE) # alphabet sorting
 numbers = c(1,9,5,7,3)
