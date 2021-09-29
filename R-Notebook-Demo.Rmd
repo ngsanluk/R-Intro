@@ -7,10 +7,6 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
-```{r}
-plot(cars)
-```
-
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
@@ -18,18 +14,37 @@ When you save the notebook, an HTML file containing the code and output will be 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
 ```{r}
+library("xlsx")
+```
+
+
+```{r}
+r = 1:10
+print(r)
+```
+
+
+```{r}
+graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
 graduates
 ```
 ```{r}
-subset(graduates, 
+plot(graduates$Under.graduate, type='o')
+```
+
+
+```{r}
+barplot(graduates$Under.graduate, 
+     names.arg = graduates$Academic.year,
+     col = "#0000FF"
+     )
+```
+
+
+```{r}
+u.gra = subset(graduates, 
        Under.graduate<10000 & Under.graduate>5000, 
        select = c(Academic.year, Under.graduate)
        )
-```
-
-```{r}
-plot(graduates$Under.graduate, 
-     type="o"
-     )
 ```
 

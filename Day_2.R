@@ -64,6 +64,10 @@ ncol(allowance)
 nrow(allowance)
 dimnames(allowance)
 print(allowance) 
+# reverse the order of rows
+order(nrow(allowance):1)
+allowance.reverse=allowance[order(nrow(allowance):1),]
+print(allowance.reverse)
 # you can also reach out to the environment tab, 
 # and click variable name to show the data-frame and GUI manner
 ?read.csv
@@ -82,7 +86,7 @@ install.packages("xlsx")
 library("xlsx")
 intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
 summary(intakes)
-graduates <- intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
+graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
 str(graduates)
 colnames(graduates)
 head(graduates)
@@ -181,8 +185,8 @@ plot(x = df.iris$Sepal.Length,
      main = "Petal Length vs. Sepal Length",
      col = "purple"
 )
-
 dev.off()
+?plot
 
 
 # USING COLORS #################################################################
