@@ -54,7 +54,7 @@ sd(iris$Sepal.Length) # standard deviation
 getwd() # get working directory
 # to set working directory, use setwd()
 
-# reading CSV File =============================================================
+## reading CSV File =============================================================
 allowance <- read.csv("data/allowance.csv") # use relative path here
 is.data.frame(allowance)
 str(allowance)
@@ -74,7 +74,7 @@ subset(allowance, Basic>120000, select = c(Assessment_Year, Basic))
 subset(allowance, Basic==min(Basic), select = c(Assessment_Year, Basic))
 subset(allowance, Basic==max(Basic), select = c(Assessment_Year, Basic))
 
-# reading Excel File ===========================================================
+## reading Excel File ===========================================================
 # Reading Excel could be troublesome
 # There are many version for excel Files
 # Excel are seldom pure tabular data. Usually embedded with formatting data.
@@ -99,7 +99,7 @@ as.numeric(substring(graduates$Academic.year, 1, 4)) - 2000
 
 
 
-# reading JSON File ============================================================
+## reading JSON File ============================================================
 # JSON file stores data as text in human-readable format. 
 # JSON stands for JavaScript Object Notation. 
 # R can read JSON files using the rjson package.
@@ -122,7 +122,7 @@ names(interbank)
 # Firefox support JSON beutifying be default
 # For Google Chrome, you will have to install extra extension
 
-# access JSON data =============================================================
+## accessing JSON data =========================================================
 result <- interbank$result
 names(result)
 records = result$records
@@ -134,8 +134,9 @@ print(records)
 # we will see at section of popular packages
 
 
+
 # DATA VISUALIZATION ###########################################################
-# histograms ===================================================================
+## histograms ===================================================================
 allowance = read.csv("data/allowance.csv")
 allowance
 hist(allowance$Basic)
@@ -147,7 +148,7 @@ hist(allowance$Basic,
      )
 
 
-# line graphs ==================================================================
+## line graphs ==================================================================
 # install.packages("xlsx") if not already installed
 # library("xlsx") if not already loaded
 # intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
@@ -160,11 +161,11 @@ plot(graduates$Under.graduate,
      type="o"
      )
 
-# bar plot =====================================================================
+## bar plot =====================================================================
 barplot(graduates$Under.graduate)
 
 
-# scatter plots ================================================================
+## scatter plots ================================================================
 library("datasets")
 df.iris <- iris
 head(df.iris)
@@ -188,7 +189,7 @@ dev.off()
 ?colors # show helps on colors 
 colors() # display a long list of pre-defined color names
 
-# color syntax =================================================================
+## color syntax =================================================================
 barplot(graduates$Under.graduate, col = "tomato") # using color name string
 barplot(graduates$Under.graduate, col = rgb(.8, .8, 0)) # use rgb() function
 barplot(graduates$Under.graduate, col = rgb(200, 0, 0, max=255))
@@ -199,7 +200,7 @@ barplot(graduates$Under.graduate, col = colors()[400]) # use color index
 # use TWO color alternatively
 barplot(graduates$Under.graduate, col = c("navy", "orange")) 
 
-# using  palette ===============================================================
+## using  palette ===============================================================
 ?palette
 palette()
 barplot(graduates$Under.graduate, col = 1:7) 
@@ -207,13 +208,13 @@ barplot(graduates$Under.graduate, col = 1:7)
 # using other built-in palette
 barplot(graduates$Under.graduate, col = heat.colors(12)) 
 
-# colors for R =================================================================
+## colors for R =================================================================
 browseURL("https://datalab.cc/rcolors") # you can download the color list
 
 # more on using color for R
 browseURL("https://www.r-bloggers.com/2012/10/palettes-in-r/")
 
-# color tips ==================================================================
+## color tips ==================================================================
 # Color is very a dominant design tool to guide user's attention
 # Over-use or mistakenly use of colors will be confusing. Be careful!
 # Some colors are culture bounded.  Red is good for Chinese or east Asia
@@ -233,7 +234,7 @@ browseURL("https://www.r-bloggers.com/2012/10/palettes-in-r/")
 # to be used by the R program that is going to use them.
 
 
-# packages listing =============================================================
+## packages listing =============================================================
 # All the packages available in R language are listed 
 browseURL("https://cran.r-project.org/web/packages/index.html")
 
@@ -274,13 +275,13 @@ df.sal <- import("data/Salaries.csv")
 head(df.sal)
 colnames(df.sal)
 
-# some popular packages ========================================================
+## some popular packages ========================================================
 # tidyverse, rio, party
 
 installed.packages("tidyverse") # for tidying up data and more function
 # more on tydyverse: https://www.tidyverse.org/
 
-# importing JSON using addon ++++===============================================
+## importing JSON using addon ===============================================
 
 # REMOVE the following TWO lines
 # import("data/daily-figures-interbank-liquidity.json")
@@ -303,8 +304,45 @@ subset(records,
        select=c("end_of_date", "hibor_overnight", "hibor_fixing_1m", "twi")
 )
 
+## access JSON data over the web ================================================
+url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en"
+hk.weather <- fromJSON(url)
+str(hk.weather)
+summary(hk.weather)
+hk.weather$generalSituation
+hk.weather$updateTime
+hk.weather$weatherForecast # returns an array
+class(hk.weather$weatherForecast[1])
+hk.weather$weatherForecast$forecastDate
+hk.weather$weatherForecast$forecastDate[1]
+hk.weather$weatherForecast$forecastMaxtemp
+hk.weather$weatherForecast$forecastMaxtemp$value
+hk.weather$weatherForecast$forecastMaxtemp$value[1]
+sprintf("The max tempreature for %s is %s%s.",
+        hk.weather$weatherForecast$forecastDate[1], 
+        hk.weather$weatherForecast$forecastMaxtemp$value[1], 
+        hk.weather$weatherForecast$forecastMaxtemp$unit[1]
+        )
+
+
 # Daily Interbank Liquidity
 # https://apidocs.hkma.gov.hk/documentation/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity/
+## exercise: practicing web json ===============================================
+# accessing interbank liquidity data from open data
+hkma.interbank.url = "https://api.hkma.gov.hk/public/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity"
+interbank.liquidity = fromJSON(hkma.interbank.url)
+summary(interbank.liquidity)
+str(interbank.liquidity)
+interbank.liquidity$result
+str(interbank.liquidity$result)
+interbank.records = interbank.liquidity$result$records
+head(interbank.records)
+interbank.records[1] # returns the first column
+interbank.records[1,] # return the first row
+interbank.records[1,]$end_of_date
+interbank.records[1,]$cu_weakside
+interbank.records[1,]$cu_strongside
+
 
 # More Finance Data: 
 # https://data.gov.hk/tc-datasets/provider/hk-hkma/category/finance?order=name&file-content=no
@@ -318,20 +356,20 @@ subset(records,
 # Packages consumes memory
 # When you are done with experiencing some packages, unload them to free memory
 
-# clean up variables ===========================================================
+## clean up variables ===========================================================
 age <- 22
 city <- "HK"
 ls() # show the variables in project environment
 rm(list = c("age", "city")) # remove "age", "city" variable from memory
 rm(list = ls()) # remove all the variables
 
-# clean up loaded packages =====================================================
+## clean up loaded packages =====================================================
 search() # show the loaded memory
 p_unload(all) # unload ALL add-ons. Base library will stay
 search()
 detach("package:datasets", unload=TRUE) # unload base library
 
-# clean console screen =========================================================
+## clean console screen =========================================================
 # shortcut: CTRL+L
 # or reaching out to the clean button on console window (upper right)
 cat("\014")
@@ -340,7 +378,7 @@ cat("\014")
 
 # HANDLING COMPLEX CODES #######################################################
 
-# code in multiple lines =======================================================
+## code in multiple lines =======================================================
 # use together with comment to enable/disable certain parameters easily
 
 library("datasets")
@@ -354,7 +392,7 @@ plot(x = df.iris$Sepal.Length,
 )
 
 
-# piping commands ==============================================================
+## piping commands ==============================================================
 # nested function calls become really messy and difficult to read
 # especially when each function has multiple parameters.
 text = "1234.56789"
@@ -405,13 +443,13 @@ library("xlsx")
 intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
 summary(intakes)
 
-# General Statistic ============================================================
+## general statistic ============================================================
 max(intakes$Under.graduate)
 min(intakes$Under.graduate)
 mean(intakes$Under.graduate)
 median(intakes$Under.graduate)
 
-# linear regression ============================================================
+## linear regression ============================================================
 # Regression analysis is a very widely used statistical tool 
 #   to establish a relationship model between two variables. 
 # One of these variable is called predictor variable 
@@ -435,7 +473,7 @@ median(intakes$Under.graduate)
 # 4 - Get a summary of the relationship model to know the average error in prediction. Also called residuals.
 # 5 - To predict the weight of new persons, use the predict() function in R.
 
-# example: predicting the weight ================================================
+## example: predicting the weight ================================================
 x <- c(151, 174, 138, 186, 128, 136, 179, 163, 152, 131) # height
 y <- c(63, 81, 56, 91, 47, 57, 76, 72, 62, 48) # weight
 
@@ -470,9 +508,9 @@ plot(y,x,
      )
 
 
-# contributed packages =========================================================
+## more packages =========================================================
 # more powerful statistic toos, machine learning & chart tools 
-#   are provided by contributed R packages
+# are provided by contributed R packages
 
 # tydyverse
 browseURL("https://www.tidyverse.org/")
