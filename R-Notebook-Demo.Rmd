@@ -29,7 +29,10 @@ graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
 graduates
 ```
 ```{r}
-plot(graduates$Under.graduate, type='o')
+plot(graduates$Under.graduate, 
+     type='o',
+     col = "purple"
+     )
 ```
 
 
@@ -46,5 +49,6 @@ u.gra = subset(graduates,
        Under.graduate<10000 & Under.graduate>5000, 
        select = c(Academic.year, Under.graduate)
        )
+u.gra
 ```
 

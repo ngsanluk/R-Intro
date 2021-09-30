@@ -257,7 +257,7 @@ barplot(graduates$Under.graduate, col = c("navy", "orange"))
 ## using  palette ===============================================================
 ?palette
 palette()
-barplot(graduates$Under.graduate, col = 1:7) 
+barplot(graduates$Under.graduate, col = 1:7) # using color #1 to #7 from color palettes
 
 # using other built-in palette
 barplot(graduates$Under.graduate, col = heat.colors(12)) 
@@ -270,9 +270,9 @@ browseURL("https://www.r-bloggers.com/2012/10/palettes-in-r/")
 
 ## color tips ==================================================================
 # Color is very a dominant design tool to guide user's attention
-# Over-use or mistakenly use of colors will be confusing. Be careful!
+# Over-use or mistakenly use of colors becomes confusing. Be careful!
 # Some colors are culture bounded.  Red is good for Chinese or east Asia
-# Red is definitely NOT good in financial reporting
+# Red is usually NOT good in financial reporting
 
 
 
@@ -287,6 +287,8 @@ browseURL("https://www.r-bloggers.com/2012/10/palettes-in-r/")
 # Other packages which are already installed have to be loaded explicitly 
 # to be used by the R program that is going to use them.
 
+# Notes: some packages installation might require re-start R studio 
+# to take effective
 
 ## packages listing =============================================================
 # All the packages available in R language are listed 
@@ -298,12 +300,10 @@ browseURL("https://cran.r-project.org/web/packages/index.html")
 # to install a package
 # syntax - install.packages("Package Name")
 # to install multiple packages - install.packages("Package1", "Package2")
-# e.g 
-# install.packages("xlsx") 
-# it will take a while download requested packages
+# e.g : install.packages("xlsx") 
+# it will take a while to download requested packages
 
-# to remove a package
-# remove.packages("xlsx")
+# to remove a package: remove.packages("xlsx")
 
 
 
@@ -316,16 +316,16 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(pacman, party, psych, rio, tidyverse)
 
 # alternative solution for reading csv
-(df <- read_csv("data/allowance.csv")) # read_csv is an addon from tidyverse/readr
+(df <- read_csv("data/allowance.csv")) # read_csv is an add-on from tidyverse/readr
 ?read_csv
 ?readr
 summary(df)
 str(df)
 head(df)
-colnames(df)
+colnames(df) # returns the column names of a data frame
 
-# reading another csv
-df.sal <- import("data/Salaries.csv")
+# reading another csv: use ing import() function
+df.sal <- import("data/Salaries.csv") # import is a function from add-on
 head(df.sal)
 colnames(df.sal)
 
@@ -335,16 +335,20 @@ colnames(df.sal)
 installed.packages("tidyverse") # for tidying up data and more function
 # more on tydyverse: https://www.tidyverse.org/
 
-## importing JSON using addon ===============================================
+## importing JSON using add-ons ===============================================
 
-# REMOVE the following TWO lines
-# import("data/daily-figures-interbank-liquidity.json")
-# library(tidyverse)
+# REMOVE the following TWO lines to test import json data
+# interbank.liquidity <- import("data/daily-figures-interbank-liquidity.json")
+# summary(interbank.liquidity)
+# names(interbank.liquidity)
+# interbank.liquidity$result
+
+# another package to load json
 library(jsonlite) # load package
-interbank2 = fromJSON("data/daily-figures-interbank-liquidity.json")
-class(interbank2) # return data.frame
-names(interbank2)
-result <- interbank2$result
+interbank = fromJSON("data/daily-figures-interbank-liquidity.json")
+class(interbank) # return data.frame
+names(interbank)
+result <- interbank$result
 class(result)
 names(result)
 records = result$records
@@ -352,13 +356,15 @@ class(records) # return data.frame
 records
 glimpse(records) # Not a built-in function
 str(records)
+names(records) # show the child properties names
 head(records)
 subset(records, 
        twi<102, 
        select=c("end_of_date", "hibor_overnight", "hibor_fixing_1m", "twi")
 )
 
-## access JSON data over the web ================================================
+## access JSON data directly over the web ======================================
+# this will retrieve the live/real-time data
 url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en"
 hk.weather <- fromJSON(url)
 str(hk.weather)
@@ -366,10 +372,15 @@ summary(hk.weather)
 hk.weather$generalSituation
 hk.weather$updateTime
 hk.weather$weatherForecast # returns an array
-class(hk.weather$weatherForecast[1])
-hk.weather$weatherForecast$forecastDate
-hk.weather$weatherForecast$forecastDate[1]
-hk.weather$weatherForecast$forecastMaxtemp
+names(hk.weather) # returns the child properties name
+hk.weather$weatherForecast # return all the rows of 9 days forecast
+class(hk.weather$weatherForecast) # it's a data frame
+hk.weather$weatherForecast[1] # gets a column by column number
+hk.weather$weatherForecast$forecastDate # gets a column by column name
+hk.weather$weatherForecast[1,] # gets a row by row number
+hk.weather$weatherForecast[2,] # gets a row by row number
+hk.weather$weatherForecast[1,]$forecastDate # gets a row's property by name
+hk.weather$weatherForecast$forecastMaxtemp # returns a columns
 hk.weather$weatherForecast$forecastMaxtemp$value
 hk.weather$weatherForecast$forecastMaxtemp$value[1]
 sprintf("The max tempreature for %s is %s%s.",
@@ -378,13 +389,14 @@ sprintf("The max tempreature for %s is %s%s.",
         hk.weather$weatherForecast$forecastMaxtemp$unit[1]
         )
 
-
+# Exercise: Retrieving live JSON data from HKMA
 # Daily Interbank Liquidity
 # https://apidocs.hkma.gov.hk/documentation/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity/
 ## exercise: practicing web json ===============================================
 # accessing interbank liquidity data from open data
 hkma.interbank.url = "https://api.hkma.gov.hk/public/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity"
 interbank.liquidity = fromJSON(hkma.interbank.url)
+# the above retrieval will take a while.  The server response is slow.
 summary(interbank.liquidity)
 str(interbank.liquidity)
 interbank.liquidity$result
@@ -393,7 +405,7 @@ interbank.records = interbank.liquidity$result$records
 head(interbank.records)
 interbank.records[1] # returns the first column
 interbank.records[1,] # return the first row
-interbank.records[1,]$end_of_date
+interbank.records[1,]$end_of_date # JSON data is nested
 interbank.records[1,]$cu_weakside
 interbank.records[1,]$cu_strongside
 
@@ -413,18 +425,19 @@ interbank.records[1,]$cu_strongside
 ## clean up variables ===========================================================
 age <- 22
 city <- "HK"
-ls() # show the variables in project environment
-rm(list = c("age", "city")) # remove "age", "city" variable from memory
-rm(list = ls()) # remove all the variables
+ls() # shows the variables in project environment
+rm(list = c("age", "city")) # removes "age", "city" variable from memory
+rm(list = ls()) # removes all the variables
 
-## clean up loaded packages =====================================================
-search() # show the loaded memory
-p_unload(all) # unload ALL add-ons. Base library will stay
+## cleans up loaded packages =====================================================
+search() # shows the loaded memory
+p_unload(all) # unloads ALL add-ons. Base library will stay
 search()
-detach("package:datasets", unload=TRUE) # unload base library
+detach("package:datasets", unload=TRUE) # unloads base library
 
 ## clean console screen =========================================================
-# shortcut: CTRL+L
+# press "Clean console" icon
+# keyboard shortcut: CTRL+L
 # or reaching out to the clean button on console window (upper right)
 cat("\014")
 
@@ -432,7 +445,8 @@ cat("\014")
 
 # HANDLING COMPLEX CODES #######################################################
 
-## code in multiple lines =======================================================
+## put codes in multiple lines =================================================
+# to improve readability
 # use together with comment to enable/disable certain parameters easily
 
 library("datasets")
@@ -447,12 +461,12 @@ plot(x = df.iris$Sepal.Length,
 
 
 ## piping commands ==============================================================
-# nested function calls become really messy and difficult to read
+# nested functions calls becomes really messy and difficult to read
 # especially when each function has multiple parameters.
-text = "1234.56789"
-round(sqrt(as.double(text)), 2)
+text = "1234.56789" # sometimes number data appears as text when import
+round(sqrt(as.double(text)), 2) # can easily miss closing parentheses
 
-# we need extra package to enable piping command
+# we need extra packages to enable piping command
 # built-in command to load addon: library("tidyverse")
 # we've downloaded pacman (package manager) to make things easier
 if (!require("pacman")) install.packages("pacman")
