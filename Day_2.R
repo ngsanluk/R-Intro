@@ -1,11 +1,11 @@
 # R INTRO - DAY 2 ##############################################################
-# - Built-in dataset
-# - Reading Data from File - CSV, EXCEL, JSON
+# - Built-in data-set
+# - Reading Data from Files - CSV, EXCEL, JSON
 # - Data Visualization
 # - Using Colors
 # - Using Packages
-# - Clean up
-# - Handling Complex Command
+# - Projects/Codes Clean up
+# - Handling Complex Commands
 # - R Markdown
 # - Statistics Features: Mean, Median, Regression
 # - Further Learning Resources
@@ -14,7 +14,7 @@
 
 # SAMPLE DATASET ###############################################################
 
-# load from built-in library (from base R)
+# load from built-in library (a.k.a base R)
 library("datasets") # or require("datasets")
 # library() vs. require() 
 # The library() by default returns an error if the requested package does not exist.
@@ -28,8 +28,8 @@ library(help = 'datasets') # display help information about built-in data-sets
 str(iris) # show structure information
 summary(iris)
 dimnames(iris) # returns column names
-typeof(iris)
-is.data.frame(iris)
+typeof(iris) # check the storage type
+is.data.frame(iris) # check if it's data-frame
 class(iris)
 head(iris)
 (species <- iris$Species) # extracting column/columns
@@ -51,8 +51,9 @@ sd(iris$Sepal.Length) # standard deviation
 # READING DATA #################################################################
 
 # show current working directory
-getwd() # get working directory
-# to set working directory, use setwd()
+getwd() #  get working directory
+# to set working directory, use setwd() function
+# Pass a correct absolute path to setwd() to change working directory
 
 ## reading CSV File =============================================================
 allowance <- read.csv("data/allowance.csv") # use relative path here
@@ -64,36 +65,57 @@ ncol(allowance)
 nrow(allowance)
 dimnames(allowance)
 print(allowance) 
-# reverse the order of rows
+
+# reverse the order of rows/columns
+nrow(allowance) # returns number of rows
+ncol(allowance) # returns number of columns
 order(nrow(allowance):1)
-allowance.reverse=allowance[order(nrow(allowance):1),]
-print(allowance.reverse)
+(allowance.rows.reversed=allowance[order(nrow(allowance):1), ])
+(allowance.cols.reversed=allowance[, order(ncol(allowance):1)])
 # you can also reach out to the environment tab, 
 # and click variable name to show the data-frame and GUI manner
 ?read.csv
 
 # subset() function - let you perform SQL like filtering query
 subset(allowance, Basic>120000)
+
+# use select parameter to choose columns to retrieve
 subset(allowance, Basic>120000, select = c(Assessment_Year, Basic))
-subset(allowance, Basic==min(Basic), select = c(Assessment_Year, Basic))
-subset(allowance, Basic==max(Basic), select = c(Assessment_Year, Basic))
+
+# use of aggregation functions: e.g.: min(), max()
+subset(allowance, 
+       Basic==min(Basic), 
+       select = c(Assessment_Year, Basic)
+       )
+subset(allowance, 
+       Basic==max(Basic), 
+       select = c(Assessment_Year, Basic)
+       )
+# put statement in to multiple lines for readability
+
 
 ## reading Excel File ===========================================================
 # Reading Excel could be troublesome
-# There are many version for excel Files
-# Excel are seldom pure tabular data. Usually embedded with formatting data.
+# As there are many version for excel Files
+# Excel are seldom pure tabular data. 
+# Usually embedded with formatting data.
+# To avoid errors of reading excel, you can save/convert it to CSV first
 install.packages("xlsx")
-library("xlsx")
+library("xlsx") # or use without double quote: library(xlsx)
 intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
 summary(intakes)
 graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
-str(graduates)
-colnames(graduates)
+str(graduates) # returns the structure of graduates data frame
+colnames(graduates) # returns the columns' names
 head(graduates)
-data.frame(graduates$Academic.year ,graduates$Under.graduate)
-subset(graduates, Under.graduate<10000, select = c(Academic.year, Under.graduate))
+# alternative approach to retrieve certain columns
+data.frame(graduates$Academic.year, graduates$Under.graduate)
 subset(graduates, 
-       Under.graduate<10000 & Under.graduate>5000, 
+       Under.graduate<10000, 
+       select = c(Academic.year, Under.graduate)
+       )
+subset(graduates, 
+       Under.graduate<10000 & Under.graduate>5000, # multiple conditions 
        select = c(Academic.year, Under.graduate)
        )
 substring(graduates$Academic.year, 1, 4)
@@ -105,8 +127,9 @@ as.numeric(substring(graduates$Academic.year, 1, 4)) - 2000
 
 ## reading JSON File ============================================================
 # JSON file stores data as text in human-readable format. 
-# JSON stands for JavaScript Object Notation. 
-# R can read JSON files using the rjson package.
+# However, JSON files are targeted to read by programs
+# JSON stands for JavaScript Object Notation
+# R can read JSON files using the rjson package or others
 # JSON is very popular to present web api data
 # Example: fixer.io for foreign exchange
 # Example: Google Geocoding: for location searching
@@ -120,17 +143,17 @@ library("rjson")
 interbank <- fromJSON(file = "data/daily-figures-interbank-liquidity.json")
 interbank
 class(interbank)
-names(interbank)
+names(interbank) # return the names of child properties
 
 # Open up your JSON file in a browser to view JSON data structure
-# Firefox support JSON beutifying be default
-# For Google Chrome, you will have to install extra extension
+# Firefox support JSON beutifying by default to make it more readable
+# For Google Chrome, you will have to install extra extension for readability
 
 ## accessing JSON data =========================================================
-result <- interbank$result
-names(result)
-records = result$records
-records
+result <- interbank$result # use $ to access child proproperty
+names(result) # return the names of child properties
+records = interbank$result$records # json data is nested/multi-level
+records # shows the contents
 str(records)
 class(records)
 print(records)
@@ -141,9 +164,10 @@ print(records)
 
 # DATA VISUALIZATION ###########################################################
 ## histograms ===================================================================
-allowance = read.csv("data/allowance.csv")
+allowance = read.csv("data/allowance.csv") # use relative path
 allowance
 hist(allowance$Basic)
+# pass extra parameter to control chart's display
 hist(allowance$Basic, 
      main = "Basic Allowance",
      xlab = "Basic Allowance for Single Person",
@@ -155,8 +179,8 @@ hist(allowance$Basic,
 ## line graphs ==================================================================
 # install.packages("xlsx") if not already installed
 # library("xlsx") if not already loaded
-# intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
-# summary(intakes)
+intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
+summary(intakes)
 graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
 str(graduates)
 head(graduates)
@@ -164,16 +188,42 @@ plot(graduates$Under.graduate)
 plot(graduates$Under.graduate, 
      type="o"
      )
+plot(graduates$Under.graduate, 
+     type="o",
+     col = "purple"
+)
 
-## bar plot =====================================================================
+## bar plot ====================================================================
 barplot(graduates$Under.graduate)
 
+## pie chart ===================================================================
+# the following example generates a pie chart of the latest year graduates
+graduates[1] # returns the first column
+typeof(graduates[1])
+graduates[1,] # returns the first row
+typeof(graduates[1,])
+graduates[nrow(graduates),] # returns the last row
+graduates[,1] # returns the first row as vector
+typeof(graduates[,1]) 
+last.row = graduates[nrow(graduates),]
+typeof(last.row)
+last.row[2:ncol(graduates)] #  excluding the first column - year column
+year.18.19 = as.numeric(
+  last.row[2:ncol(graduates)]
+    ) # excluding the first column - the year column
+pie(year.18.19)
+colnames(graduates) # all column names
+labels = colnames(graduates)[2:ncol(graduates)] # excluding the first column name
+pie(year.18.19, labels)
 
-## scatter plots ================================================================
+## scatter plots ===============================================================
 library("datasets")
 df.iris <- iris
 head(df.iris)
-hist(df.iris$Sepal.Width)
+plot(x=df.iris$Sepal.Width, 
+     y=df.iris$Petal.Width,
+     col = "purple"
+     )
 
 # specifying a output file
 png(file = "output/scatterplot3.png") 

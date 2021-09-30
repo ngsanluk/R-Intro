@@ -1,5 +1,5 @@
 # R INTRO - DAY 1 ##############################################################
-# Today's Topic
+# Today's Topics
 # - Hands on R
 # - Basic Syntax
 # - Using Help
