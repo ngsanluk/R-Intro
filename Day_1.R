@@ -172,6 +172,23 @@ is.vector(is.student)
 is.vector(age)
 is.vector(fruits)
 
+
+# UPPER TO LOWER CONVERSION ################################################
+charToRaw("A") # outputs 41 hex value
+charToRaw("a") # outputs 61 hex value
+as.numeric(charToRaw("A")) # outputs 65 decimal value
+as.numeric(charToRaw("a")) # outputs 97 decimal value
+# the value differenc for lower case to upper case
+# 97 - 65 = 32
+bytes <- charToRaw("ABC") # raw bytes of ASCII codes: 41 42 43
+print(bytes) # print hexidecimal value: 41 42 43
+print(as.numeric(bytes)) # print decimal value: 65 66 67
+as.numeric(bytes)+32 # outputs : 97 98 99 (decimal values)
+bytes_converted = as.raw(as.numeric(bytes)+32) 
+bytes_converted # hex value 61 62 63
+rawToChar(bytes_converted) # outputs lower case: abc
+
+
 # CHECK TYPE: typeof(), class() ################################################
 # typeof() determines the (R internal) type or storage mode of any object
 # class() returns the values of the class attribute of an R object
