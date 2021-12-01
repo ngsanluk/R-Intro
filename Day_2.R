@@ -329,13 +329,21 @@ df.sal <- import("data/Salaries.csv") # import is a function from add-on
 head(df.sal)
 colnames(df.sal)
 
-## some popular packages ========================================================
+## some popular packages =======================================================
 # tidyverse, rio, party
 
 installed.packages("tidyverse") # for tidying up data and more function
 # more on tydyverse: https://www.tidyverse.org/
 
-## importing JSON using add-ons ===============================================
+## loading stringr =============================================================
+library(stringr)
+first.name <- "James"
+last.name <- "Bond"
+str_glue("My name is {last.name}. {first.name} {last.name}.")
+# more on string
+browseURL("https://stringr.tidyverse.org/")
+
+## importing JSON using add-ons ================================================
 
 # REMOVE the following TWO lines to test import json data
 # interbank.liquidity <- import("data/daily-figures-interbank-liquidity.json")

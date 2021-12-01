@@ -174,6 +174,7 @@ is.vector(fruits)
 
 
 # UPPER TO LOWER CONVERSION ################################################
+browseURL("https://en.m.wikipedia.org/wiki/File:ASCII-Table-wide.svg")
 charToRaw("A") # outputs 41 hex value
 charToRaw("a") # outputs 61 hex value
 as.numeric(charToRaw("A")) # outputs 65 decimal value
