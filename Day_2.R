@@ -100,28 +100,28 @@ subset(allowance,
 # Excel are seldom pure tabular data. 
 # Usually embedded with formatting data.
 # To avoid errors of reading excel, you can save/convert it to CSV first
-install.packages("xlsx")
-library("xlsx") # or use without double quote: library(xlsx)
-intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
+installed.packages("tidyverse") # for tidying up data and more function
+library(readxl) # requires tidyverse installed first
+intakes <- read_excel("data/Students.xlsx", sheet= 1)
 summary(intakes)
-graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
+graduates <- read_excel("data/Students.xlsx", sheet= 2)
 str(graduates) # returns the structure of graduates data frame
 colnames(graduates) # returns the columns' names
 head(graduates)
 # alternative approach to retrieve certain columns
-data.frame(graduates$Academic.year, graduates$Under.graduate)
+data.frame(graduates$AcademicYear, graduates$Undergraduate)
 subset(graduates, 
-       Under.graduate<10000, 
-       select = c(Academic.year, Under.graduate)
+       Undergraduate<10000, 
+       select = c(AcademicYear, Undergraduate)
        )
 subset(graduates, 
-       Under.graduate<10000 & Under.graduate>5000, # multiple conditions 
-       select = c(Academic.year, Under.graduate)
+       Undergraduate<10000 & Undergraduate>5000, # multiple conditions 
+       select = c(AcademicYear, Undergraduate)
        )
-substring(graduates$Academic.year, 1, 4)
-typeof(substring(graduates$Academic.year, 1, 4))
-substring(graduates$Academic.year, 1, 4) > 2010
-as.numeric(substring(graduates$Academic.year, 1, 4)) - 2000
+substring(graduates$AcademicYear, 1, 4)
+typeof(substring(graduates$AcademicYear, 1, 4))
+substring(graduates$AcademicYear, 1, 4) > 2010
+as.numeric(substring(graduates$AcademicYear, 1, 4)) - 2000
 
 
 
@@ -176,25 +176,23 @@ hist(allowance$Basic,
      )
 
 
-## line graphs ==================================================================
-# install.packages("xlsx") if not already installed
-# library("xlsx") if not already loaded
-intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
+## line graphs =================================================================
+intakes <- read_excel("data/Students.xlsx", sheet= 1)
 summary(intakes)
-graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
+graduates <- read_excel("data/Students.xlsx", sheet= 2)
 str(graduates)
 head(graduates)
-plot(graduates$Under.graduate)
-plot(graduates$Under.graduate, 
+plot(graduates$Undergraduate)
+plot(graduates$Undergraduate, 
      type="o"
      )
-plot(graduates$Under.graduate, 
+plot(graduates$Undergraduate, 
      type="o",
      col = "purple"
 )
 
 ## bar plot ====================================================================
-barplot(graduates$Under.graduate)
+barplot(graduates$Undergraduate)
 
 ## pie chart ===================================================================
 # the following example generates a pie chart of the latest year graduates
@@ -244,23 +242,23 @@ dev.off()
 colors() # display a long list of pre-defined color names
 
 ## color syntax =================================================================
-barplot(graduates$Under.graduate, col = "tomato") # using color name string
-barplot(graduates$Under.graduate, col = rgb(.8, .8, 0)) # use rgb() function
-barplot(graduates$Under.graduate, col = rgb(200, 0, 0, max=255))
-barplot(graduates$Under.graduate, col = "#009900") # use RGB Hex Code String
+barplot(graduates$Undergraduate, col = "tomato") # using color name string
+barplot(graduates$Undergraduate, col = rgb(.8, .8, 0)) # use rgb() function
+barplot(graduates$Undergraduate, col = rgb(200, 0, 0, max=255))
+barplot(graduates$Undergraduate, col = "#009900") # use RGB Hex Code String
 colors()[400]
-barplot(graduates$Under.graduate, col = colors()[400]) # use color index
+barplot(graduates$Undergraduate, col = colors()[400]) # use color index
 
 # use TWO color alternatively
-barplot(graduates$Under.graduate, col = c("navy", "orange")) 
+barplot(graduates$Undergraduate, col = c("navy", "orange")) 
 
 ## using  palette ===============================================================
 ?palette
 palette()
-barplot(graduates$Under.graduate, col = 1:7) # using color #1 to #7 from color palettes
+barplot(graduates$Undergraduate, col = 1:7) # using color #1 to #7 from color palettes
 
 # using other built-in palette
-barplot(graduates$Under.graduate, col = heat.colors(12)) 
+barplot(graduates$Undergraduate, col = heat.colors(12)) 
 
 ## colors for R =================================================================
 browseURL("https://datalab.cc/rcolors") # you can download the color list
@@ -514,16 +512,15 @@ browseURL("https://rmarkdown.rstudio.com/")
 
 # STATISTICS FEATURES ##########################################################
 
-# if "xlsx" is not already installed, run - install.packages("xlsx")
-library("xlsx")
-intakes <- read.xlsx("data/Students.xlsx", sheetIndex = 1)
+library("readxl")
+intakes <- read_excel("data/Students.xlsx", sheet= 1)
 summary(intakes)
 
 ## general statistic ============================================================
-max(intakes$Under.graduate)
-min(intakes$Under.graduate)
-mean(intakes$Under.graduate)
-median(intakes$Under.graduate)
+max(intakes$Undergraduate)
+min(intakes$Undergraduate)
+mean(intakes$Undergraduate)
+median(intakes$Undergraduate)
 
 ## linear regression ============================================================
 # Regression analysis is a very widely used statistical tool 
@@ -583,6 +580,8 @@ plot(y,x,
      ylab = "Height in cm"
      )
 
+# More examples on R Statistics
+browseURL("https://www.tutorialspoint.com/r/index.htm")
 
 ## more packages =========================================================
 # more powerful statistic toos, machine learning & chart tools 
