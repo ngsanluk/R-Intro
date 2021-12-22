@@ -14,7 +14,7 @@ When you save the notebook, an HTML file containing the code and output will be 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
 ```{r}
-library("xlsx")
+library("readxl")
 ```
 
 
@@ -25,11 +25,13 @@ print(r)
 
 
 ```{r}
-graduates <- read.xlsx("data/Students.xlsx", sheetIndex = 2)
+graduates <- read_excel("data/Students.xlsx", sheet= 2)
 graduates
 ```
+
+
 ```{r}
-plot(graduates$Under.graduate, 
+plot(graduates$Undergraduate, 
      type='o',
      col = "purple"
      )
@@ -37,8 +39,8 @@ plot(graduates$Under.graduate,
 
 
 ```{r}
-barplot(graduates$Under.graduate, 
-     names.arg = graduates$Academic.year,
+barplot(graduates$Undergraduate, 
+     names.arg = graduates$AcademicYear,
      col = "#0000FF"
      )
 ```
@@ -46,8 +48,8 @@ barplot(graduates$Under.graduate,
 
 ```{r}
 u.gra = subset(graduates, 
-       Under.graduate<10000 & Under.graduate>5000, 
-       select = c(Academic.year, Under.graduate)
+       Undergraduate<10000 & Undergraduate>5000, 
+       select = c(AcademicYear, Undergraduate)
        )
 u.gra
 ```
