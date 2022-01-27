@@ -186,13 +186,22 @@ plot(graduates$Undergraduate)
 plot(graduates$Undergraduate, 
      type="o"
      )
+str(graduates)
 plot(graduates$Undergraduate, 
      type="o",
-     col = "purple"
+     col = "purple",
+     main = "Undergraduate",
+     xlab = "Year",
+     ylab = "# of student"
+     
 )
-
+?plot
 ## bar plot ====================================================================
 barplot(graduates$Undergraduate)
+barplot(graduates$Undergraduate,
+        names.arg = graduates$AcademicYear
+        )
+?barplot
 
 ## pie chart ===================================================================
 # the following example generates a pie chart of the latest year graduates
@@ -395,6 +404,18 @@ sprintf("The max tempreature for %s is %s%s.",
         hk.weather$weatherForecast$forecastMaxtemp$unit[1]
         )
 
+# Generating Charts
+class(hk.weather$weatherForecast)
+typeof(hk.weather$weatherForecast)
+str(hk.weather$weatherForecast)
+barplot(hk.weather$weatherForecast$forecastMaxtemp$value,
+     names.arg = hk.weather$weatherForecast$forecastDate,
+     col="orange",
+     main = "Weather Forecast",
+     xlab = "9-Day Forecast",
+     ylab = "Degree"
+)
+?plot
 # Exercise: Retrieving live JSON data from HKMA
 # Daily Interbank Liquidity
 # https://apidocs.hkma.gov.hk/documentation/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity/
@@ -415,6 +436,14 @@ interbank.records[1,]$end_of_date # JSON data is nested
 interbank.records[1,]$cu_weakside
 interbank.records[1,]$cu_strongside
 
+# Plotting
+plot(interbank.liquidity$result$records$hibor_overnight,
+     type="l",
+     col="orange",
+     main="hibor overnight",
+     xlab = "Date",
+     ylab = "Rate"
+     )
 
 # More Finance Data: 
 # https://data.gov.hk/tc-datasets/provider/hk-hkma/category/finance?order=name&file-content=no
