@@ -386,8 +386,7 @@ print(v3&v4)
 print(v3|v4)
 print(!v3)
 print(!v4)
-print(v3&&v4) # only use on the first element
-print(v3||v4) # only use on the first element
+
 
 # when the length of two vector is not the same
 # the shorter vector will replicate itself to match
