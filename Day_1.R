@@ -163,15 +163,18 @@ age <- 20L # integer - add an ending 'L' to differentiate to double
 c <- "A" # character
 book.title <- "Forrest Gump" # character
 bytes <- charToRaw("ABC") # raw bytes of ASCII codes
-# vector: a series of value, use c() also known as combine function
+# vector: a series of value
+# an item in vector is called components
+# use c() function to  combine multiple components
 fruits <- c("apple", "banana", "orange")
+
 # is.vector() check if the tested object (obj) is a vector or expression
 # that has either no attributes or only the names attribute set
-#
-is.vector(is.student)
-is.vector(age)
-is.vector(fruits)
-
+is.vector(is.student) # returns TRUE
+is.vector(age) # returns TRUE
+is.vector(fruits) # returns TRUE
+is.atomic(fruits) # returns TRUE
+is.list(fruits) # returns FALSE
 
 # UPPER TO LOWER CONVERSION ################################################
 browseURL("https://en.m.wikipedia.org/wiki/File:ASCII-Table-wide.svg")
@@ -216,6 +219,8 @@ typeof(typeof) # this returns 'closure'
 my.list <- list(fruits, height, age)
 names(my.list) <- c("fruites", "height", "age")
 my.list
+is.atomic(my.list) # returns FALSE
+is.list(my.list) # returns TRUE
 my.list[1] # use bracket (aka square bracket) to specify position of element
 my.list[2] # index starts at 1
 my.list[4] # index out of range, returns NULL, means nothing
