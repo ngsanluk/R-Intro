@@ -214,10 +214,22 @@ typeof(typeof) # this returns 'closure'
 # a list is an R-object which can contain many different types of elements
 # it could include vectors, functions and even another list inside it
 my.list <- list(fruits, height, age)
+names(my.list) <- c("fruites", "height", "age")
 my.list
-my.list[1] # use bracket (aka square barcket) to specify position of element
+my.list[1] # use bracket (aka square bracket) to specify position of element
 my.list[2] # index starts at 1
-my.list[4]
+my.list[4] # index out of range, returns NULL, means nothing
+
+length(my.list) # returns 3
+typeof(my.list) # returns 'list'
+typeof(my.list[1]) # returns 'list' a sub-item return in the form of list 
+typeof(my.list[[1]]) # use double bracket to get the contents. returns 'character'
+
+my.list$fruites[1] # gets an item as sub-list
+my.list$fruites[[1]] # gets an item as content
+my.list$fruites
+my.list$fruites[1]
+
 
 
 # RANGE ########################################################################
