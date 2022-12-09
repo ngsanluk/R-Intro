@@ -161,7 +161,7 @@ is.student <- TRUE # logical
 height <- 182.5 # double
 age <- 20L # integer - add an ending 'L' to differentiate to double
 c <- "A" # character
-boot.title <- "Forrest Gump" # character
+book.title <- "Forrest Gump" # character
 bytes <- charToRaw("ABC") # raw bytes of ASCII codes
 # vector: a series of value, use c() also known as combine function
 fruits <- c("apple", "banana", "orange")
@@ -179,7 +179,7 @@ charToRaw("A") # outputs 41 hex value
 charToRaw("a") # outputs 61 hex value
 as.numeric(charToRaw("A")) # outputs 65 decimal value
 as.numeric(charToRaw("a")) # outputs 97 decimal value
-# the value differenc for lower case to upper case
+# the value difference for lower case to upper case
 # 97 - 65 = 32
 bytes <- charToRaw("ABC") # raw bytes of ASCII codes: 41 42 43
 print(bytes) # print hexidecimal value: 41 42 43
@@ -189,6 +189,9 @@ bytes_converted = as.raw(as.numeric(bytes)+32)
 bytes_converted # hex value 61 62 63
 rawToChar(bytes_converted) # outputs lower case: abc
 
+# Exercise - convert your name in lowe case to upper case
+# Refer to the above logics
+my.name = "sunny"
 
 # CHECK TYPE: typeof(), class() ################################################
 # typeof() determines the (R internal) type or storage mode of any object
