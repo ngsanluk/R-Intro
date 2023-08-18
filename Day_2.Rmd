@@ -792,10 +792,158 @@ plot(y,x,
 
 **More examples on R Statistics** at [Tutorials Point](https://www.tutorialspoint.com/r/index.htm)
 
-## Further reference
+## More on R Statistical Features
 
 -   [tydyverse](https://www.tidyverse.org/)
 
 -   [tydyverse e-book online](https://r4ds.had.co.nz/)
 
 -   [R Packages](https://cran.r-project.org/web/packages/index.html)
+
+------------------------------------------------------------------------
+
+# WHAT IS R-MARKDOWN / R-NOTEBOOK?
+
+------------------------------------------------------------------------
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the codes. It's an unified experience of coding environment and descriptive notes TWO-in-ONE.
+
+## To Run a Chunk of R Codes
+
+Try executing the following chunk by clicking the **Run** button within the chunk
+
+Or place your cursor inside a chunk of codes and press **Cmd+Shift+Enter** (Mac) or **Ctrl+Shift+Enter** (Windows).
+
+```{r print a range of numbers}
+r = 10:19
+print(r)
+```
+
+```{r plot car datasets}
+plot(cars) # cars is a built-in data set
+```
+
+## To Add a New Code Chunk
+
+Click the **Insert Chunk** button on the toolbar
+
+or
+
+Press **Cmd+Option+I** (Mac) or **Ctrl+Alt+I** (Windows)
+
+```{r simple r variables declaration}
+name <- "Sunny" # assigning "Sunny" to variable 'name'
+address = "Hong Kong" # assigning "Hong Kong" to variable address
+print(name) # use print() function to show a variable's value
+address # or just directly type the variable name to show it's value
+```
+
+## On Saving a Notebook
+
+When you save the notebook, a HTML file containing the code and output will be saved alongside it. Click the **Preview** button or press **Cmd+Shift+K** (Mac) or **Ctrl+Shift+K** (Windows) to preview the HTML.
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike **Knit**, **Preview** does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+------------------------------------------------------------------------
+
+# MARKDOWN SYNTAX
+
+------------------------------------------------------------------------
+
+HTML is a very powerful presentation language. But it's quite complex.
+
+R Markdown is an easy-to-write rich text formatting for creating dynamic documents and reports.
+
+## italic text:
+
+syntax: `*italic text*`
+
+## bold text:
+
+syntax: `**bold text**`
+
+## line break:
+
+syntax:
+
+```         
+line 1 (followed by an empty line)
+
+line 2 (add a back slash)
+```
+
+## headings:
+
+Use one hash for heading 1: `# Heading 1`
+
+Use two hash for heading 2: `## Heading 2`
+
+Use three hash for heading 3: `### Header 3`
+
+## lists: start the line with `-` or `*`
+
+```         
+-   item 1
+-   item 2
+-   item 3
+```
+
+## hyperlink:
+
+syntax: `[Google](https://www.google.com)` - in the square brackets is the friendly name or description for the link - in the parentheses is the actual destination web address
+
+## image:
+
+syntax: `![Apple Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Apple-logo.png/640px-Apple-logo.png)`
+
+Start with `!`. Very similar to hyperlink syntax.
+
+------------------------------------------------------------------------
+
+# PRACTICING MARKDOWN
+
+------------------------------------------------------------------------
+
+**5 minutes on this**
+
+Use the following markdown playground to practice markdown syntax.
+
+```{r markdown playground}
+browseURL("https://dillinger.io/")
+```
+
+------------------------------------------------------------------------
+
+## R Markdown Formats & Options
+
+Press the **gear** icon next to **Preview** button.
+
+You will see the document in the format of rendered markdown.
+
+Let's give it a try.
+
+## R MARKDOWN OUTPUT
+
+Press **Preview** button to see preview of default output.
+
+Press the **Down** arrow next to **Preview** button to choose a file format to knit.
+
+## Use Notebook or Markdown?
+
+They are pretty much equivalent or at least convertible.
+
+Only different by automatic-added mark-down options at the beginning of document.
+
+If you are primarily doing analysis in the Notebook environment, choose **Notebook**.
+
+If you are primarily aiming to create a PDF or Word document, choose **R Markdown** file.
+
+## More on Markdown
+
+Reach out to: **Help : Markdown Quick Reference**
+
+Or browse the this page [rstudio lession 1](https://rmarkdown.rstudio.com/lesson-1.html)
+
+```{r browse rmarkdown lesson}
+browseURL("https://rmarkdown.rstudio.com/lesson-1.html")
+```
