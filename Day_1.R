@@ -139,12 +139,12 @@ print(city1)
 cat(city1, city2, city3, city4, city5)
 first.name <- "James"
 (last.name <- "Bond") # define a variable and print it's value to console
-age <- 12L
+code <- 7L
 # use sprintf for c style printing
 # more sprintf at below link
 # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sprintf
-sprintf("My namne is %s. %s %s. I am %i year old.",
-        last.name, first.name, last.name, age)
+sprintf("My namne is %s. %s %s. I am 00%i.",
+        last.name, first.name, last.name, code)
 # like above, you can put a statement to multiple lines
 
 
@@ -192,8 +192,8 @@ bytes_converted = as.raw(as.numeric(bytes)+32)
 bytes_converted # hex value 61 62 63
 rawToChar(bytes_converted) # outputs lower case: abc
 
-# Exercise - convert your name in lowe case to upper case
-# Refer to the above logics
+# Exercise - convert your name in lower case to upper case
+# Refer to the codes logics above
 my.name = "sunny"
 
 # CHECK TYPE: typeof(), class() ################################################
@@ -423,7 +423,7 @@ s
 
 
 
-# PROGRAM CONTROL: DECISION ####################################################
+# PROGRAM CONTROL: CONDITION  ####################################################
 is.student = F
 if (is.student) {
   print("20% OFF")
@@ -445,7 +445,7 @@ if(number >= 1000) {
 
 
 
-# PROGRAM CONTROL: LOOP ########################################################
+# PROGRAM CONTROL: LOOPING ########################################################
 for (fruit in fruits){
   print(fruit)
 }
@@ -503,7 +503,7 @@ mysquare <- function(number) {
 print(mysquare(3))
 
 
-## filterig vectors =============================================================
+## filtering vectors =============================================================
 days <- c("Sun","Mon","Tue","Wed","Thurs","Fri","Sat")
 (selected_days = days[c(1,3,5)])
 (selected_days = days[c(T,F,F,F,F,F,T)])

@@ -1,0 +1,795 @@
+---
+title: "R Introduction - Day 1"
+output: html_notebook
+---
+
+------------------------------------------------------------------------
+
+# INTERACTING WITH R-NOTEBOOK
+
+------------------------------------------------------------------------
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+## To run a chunk of codes
+
+Try executing this chunk by clicking the **Run** button (the GREEN play button) within the chunk or by placing your cursor inside it and pressing **CTRL+SHIFT+ENTER** (for Windows) or **CMD+SHIFT+ENTER** (for Mac).
+
+```{r}
+plot(cars)
+```
+
+## To run codes line by line
+
+Press **CTRL+ENTER** (Windows) or **CMD+ENTER** (Mac) to run the current line and the cursor will move alone to the next line in the chunk.
+
+```{r}
+print(100)
+print(200)
+print(300)
+print(400)
+print(500)
+```
+
+## To insert a new chunk of codes
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing **CTRL+Alt+I** (Windows) or **CMD+OPTION+I** (Mac).
+
+## To preview a notebook output
+
+When you save the notebook, an HTML file containing the codes and outputs will be saved alongside it (click the **Preview** button or press **CTRL+SHIFT+K** or **CMD+SHIFT+K** to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike **Knit**, **Preview** does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+------------------------------------------------------------------------
+
+# TODAY'S TOPICS
+
+------------------------------------------------------------------------
+
+-   Hands on R
+-   Basic Syntax
+-   Using Help
+-   Variables
+-   Data Types
+-   Using Comments
+-   Operators
+-   Strings
+-   Vectors, Lists, Matrices
+-   Data Frames
+-   Condition Control
+-   Looping
+-   Functions
+-   Built-in Sample Data Sets
+
+------------------------------------------------------------------------
+
+# A FEW USEFUL SHORTCUTS
+
+------------------------------------------------------------------------
+
+Copy Line(s): **SHIFT+ALT+UP/DOWN** (Windows) or **CMD+OPTION+UP/DOWN** (Mac)
+
+Move Line(s) Up/Down: **ALT+UP/DOWN** to move line(s) up or down
+
+More useful keyboard shortcuts: [R Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
+
+------------------------------------------------------------------------
+
+# GETTING HELPS
+
+------------------------------------------------------------------------
+
+To show helps, adding a question mark `?` in front of a command
+
+```{r}
+?toupper
+?is.vector
+```
+
+------------------------------------------------------------------------
+
+# ADDING COMMENTS TO YOUR CODES
+
+------------------------------------------------------------------------
+
+Use comment symbol `#` to add simple explanation to your codes or to temporarily disable certain lines of codes
+
+shortcut for commenting/un-commenting
+
+On Windows: **CTRL+SHIFT+C**
+
+On Mac: **COMMAND+SHIFT+C**
+
+```{r}
+# this is comment. the lines below print numbers of various value
+print(100) # this is also comment. this line print 100
+print(200) 
+# the following line is comment out and therefore it is NOT executed.
+# print(300) 
+print(400)
+print(500)
+```
+
+------------------------------------------------------------------------
+
+# DECLARING VARIABLES
+
+------------------------------------------------------------------------
+
+Variables are nothing but reserved computer memory locations to store values for later computation. When you create a variable, you reserve some space in memory to store value. A valid variable name consists of **letters**, **numbers**, **dot** or **underline**
+
+-   A variable name starts with a letter or dot
+-   A variable name **CANNOT** start with `_` or number
+-   It's case sensitive
+
+Valid variable names: `first_name`, `first.name`, `firstname`, `address2`, `.address`
+
+Invalid variable names: `_mobile`, `2mobile`, `.2mobile`
+
+```{r}
+my.name <- "April"
+MY.NAME <- "Benny"
+my_name <- "Cathy"
+```
+
+------------------------------------------------------------------------
+
+# VARIABLES ASSIGNMENT
+
+------------------------------------------------------------------------
+
+R allows 5 forms of assignment operators
+
+**leftward assignment**: value on the right are stored to variable name on the left.
+
+```         
+x <- value
+x = value
+x <<- value
+```
+
+**rightward assignment**: value on the left are stored to variable name on the right.
+
+```         
+value -> x
+value ->> x
+```
+
+```{r}
+city1 <- "Beijing"
+city2 = "Shanghai"
+city3 <<- "Guangzhou"
+"Shenzhen" -> city4
+"Qingdao" ->> city5
+(city6 <- "Hangzhou") # add a pair of parentheses to declare a variable and print it out to the screen
+```
+
+## list variables in environment
+
+```{r}
+print(ls()) # list all variables
+print(ls(pattern="city")) #list variables with name start 'city'
+```
+
+## clear all variables
+
+```{r}
+rm(city6)
+# rm(list =ls()) # remove all variables
+```
+
+------------------------------------------------------------------------
+
+# PRINTING OUT
+
+------------------------------------------------------------------------
+
+## use `print()` function
+
+```{r}
+print(city1)
+cat(city1, city2, city3, city4, city5)
+```
+
+## use `sprintf()` function for c style printing
+
+more about [sprintf](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sprintf)
+
+```{r}
+first.name <- "James"
+(last.name <- "Bond") # define a variable and print it's value to console
+code <- 7L # L is added at end to indicate is a whole number
+sprintf("My namne is %s. %s %s. I am 00%i.",
+        last.name, first.name, last.name, code)
+# like above, you can put a statement to multiple lines
+```
+
+------------------------------------------------------------------------
+
+# DATA TYPES
+
+------------------------------------------------------------------------
+
+*Vectors: Logical, Numeric, Integer, Complex, Character, Raw* Lists \* Matrices \* Arrays \* Factors \* Data Frames
+
+Types in R are rather different to other programming language.\
+It could be confusing at first.
+
+```{r}
+is.student <- TRUE # logical
+height <- 182.5 # double
+age <- 20L # integer - add an ending 'L' to differentiate to double
+c <- "A" # character
+book.title <- "Forrest Gump" # character
+bytes <- charToRaw("ABC") # raw bytes of ASCII codes
+
+```
+
+vector: a series of values
+
+an item in vector is called a component
+
+use `c()` function to combine multiple components
+
+```{r}
+fruits <- c("apple", "banana", "orange")
+```
+
+`is.vector()` checks if the tested object (obj) is a vector or expression that has either no attributes or only the names attribute set
+
+```{r}
+is.vector(is.student) # returns TRUE
+is.vector(age) # returns TRUE
+is.vector(fruits) # returns TRUE
+is.atomic(fruits) # returns TRUE
+is.list(fruits) # returns FALSE
+```
+
+## upper-case / lower-case converstion
+
+About [ASCII Codes](https://en.m.wikipedia.org/wiki/File:ASCII-Table-wide.svg)
+
+```{r}
+charToRaw("A") # outputs 41 hex value
+charToRaw("a") # outputs 61 hex value
+as.numeric(charToRaw("A")) # outputs 65 decimal value
+as.numeric(charToRaw("a")) # outputs 97 decimal value
+```
+
+The value difference for lower case to upper case
+
+97 - 65 = 32
+
+```{r}
+bytes <- charToRaw("ABC") # raw bytes of ASCII codes: 41 42 43
+print(bytes) # print hexidecimal value: 41 42 43
+print(as.numeric(bytes)) # print decimal value: 65 66 67
+as.numeric(bytes)+32 # outputs : 97 98 99 (decimal values)
+bytes_converted = as.raw(as.numeric(bytes)+32) 
+bytes_converted # hex value 61 62 63
+rawToChar(bytes_converted) # outputs lower case: abc
+```
+
+## Exercise
+
+convert your name in lower case to upper case
+
+Hints: refer to the codes logic above
+
+```{r}
+my.name = "sunny"
+
+```
+
+------------------------------------------------------------------------
+
+# CHECKING TYPES: `typeof()`, `class()`, `mode()`
+
+------------------------------------------------------------------------
+
+`typeof()` determines the (R internal) type or storage mode of any object
+
+`class()` returns the values of the class attribute of an R object
+
+`mode()` the mode specifies how the object is stored in memory, same to typeof()
+
+```{r}
+typeof(is.student)
+typeof(bytes)
+class(is.student)
+class(bytes)
+class(fruits)
+typeof(fruits)
+mode(fruits)
+is.vector(fruits) # check if it is a vector
+class(typeof) # this returns 'function'
+typeof(typeof) # this returns 'closure'
+```
+
+------------------------------------------------------------------------
+
+# LIST
+
+------------------------------------------------------------------------
+
+A list is an R-object which can contain many different types of elements. it could include vectors, functions and even another list inside it.
+
+```{r}
+my.list <- list(fruits, height, age)
+names(my.list) <- c("fruites", "height", "age")
+my.list
+is.atomic(my.list) # returns FALSE
+is.list(my.list) # returns TRUE
+my.list[1] # use bracket (aka square bracket) to specify position of element
+my.list[2] # index starts at 1
+my.list[4] # index out of range, returns NULL, means nothing
+
+length(my.list) # returns 3
+typeof(my.list) # returns 'list'
+typeof(my.list[1]) # returns 'list' a sub-item return in the form of list 
+typeof(my.list[[1]]) # use double bracket to get the contents. returns 'character'
+
+my.list$fruites[1] # gets an item as sub-list
+my.list$fruites[[1]] # gets an item as content
+my.list$fruites
+my.list$fruites[1]
+
+```
+
+------------------------------------------------------------------------
+
+# RANGE
+
+------------------------------------------------------------------------
+
+```{r}
+r = 1:10
+r
+r[1]
+length(r)
+r[length(r)]
+(r2 = seq(1, 10, by=2))
+(r3 = r2 * 10) # each element in r2 times 10 and stored in a new range
+```
+
+------------------------------------------------------------------------
+
+# MATRICES
+
+------------------------------------------------------------------------
+
+A matrix is a two-dimensional rectangular data set. It can be created using a vector input to the matrix function.
+
+```{r}
+m1 = matrix( c(1:12), nrow=3) # nrow is number of row
+m1
+m2 = matrix( c(1:12), nrow=3, byrow = TRUE) # default processing is by col
+m2
+m3 = matrix( c(1:12), ncol=2)
+m3
+```
+
+------------------------------------------------------------------------
+
+# ARRAYS
+
+------------------------------------------------------------------------
+
+Matrices are confined to two dimensions. Arrays can be of any number of dimensions. The array function takes a `dim` attribute which creates the required number of dimension.
+
+In the following example, we create an array with two elements and each is 3x3 matrices.
+
+```{r}
+myarray <- array(c(1:18), dim = c(3, 3, 2))
+myarray
+myarray[,,1] # use comas to separate position number of various dimension
+myarray[,,2]
+myarray[1,1,2]
+```
+
+------------------------------------------------------------------------
+
+# FACTORS
+
+------------------------------------------------------------------------
+
+Factors are the r-objects which are created using a vector.
+
+Factors are created using the `factor()` function.
+
+the `nlevels()` functions gives the count of levels (number of distinct values)
+
+```{r}
+cities <- c('Shenzhen','Beijing','Shanghai','Shenzhen','Qingdao','Guangzhou','Beijing')
+factor_cities <- factor(cities)
+factor_cities
+levels(factor_cities)
+nlevels(factor_cities) # returns 5
+```
+
+------------------------------------------------------------------------
+
+# DATA FRAME
+
+------------------------------------------------------------------------
+
+-   data frames are tabular data objects.
+-   each column can contain different type of data.
+-   the column names should be non-empty.
+-   the row names should be unique.
+-   the data stored in a data frame can be of numeric, factor or character type.
+-   each column should contain same number of data items.
+
+Data Frames are created using the `data.frame()` function. We don't normally create data frame like the following example. Instead, we usually import data from external file such as **csv**, **json**, **excel**, **xml**
+
+```{r}
+name <- c("April", "Ben", "Catherine", "Debra", "Eric", "Frankie", "George")
+age <- c(20, 21, 19, 22, 23, 24, 25)
+is.student <- c(TRUE, FALSE, T, F, F, F, F)
+df = data.frame(name, age, is.student)
+df
+head(df) # list the first SIX rows
+colnames(df) # show the column names of data-frame
+```
+
+## information about data-frame
+
+```{r}
+str(df) # prints the structure of a data-frame
+summary(df) # prints the summary information of a data-frame
+nrow(df) # returns number of row
+ncol(df) # returns number of column
+length(df) # number of variables, same as number of columns
+
+```
+
+## type information of data frame
+
+```{r}
+class(df) # returns data.frame
+typeof(df) # return list
+mode(df) # return list
+```
+
+## ise `$` symbol to refer to column
+
+```{r}
+df$name # use '$' sign to indicate column name getting the 'name' column
+df$age # getting the age column
+```
+
+## getting row/column
+
+```{r}
+df[1,] # get the first row
+is.vector(df[1,])
+class(df[1,])
+df[,1] # get the first col
+df[1] # get the first col, return as data.frame
+```
+
+The above seems to give identical result, their types are different. Let's check the return types.
+
+```{r}
+cat(class(df[,1]), class(df[1]))
+cat(typeof(df[,1]), typeof(df[1]))
+cat(is.vector(df[,1]), is.vector(df[1]))
+cat(is.data.frame(df[,1]), is.data.frame(df[1]))
+df[1,1] # get the first col in the first row
+```
+
+## extract columns from data frame
+
+```{r}
+data.frame(df$name, df$is.student) # take two column and form a new data frame
+
+```
+
+## extra first two rows
+
+```{r}
+df[1:2,]
+
+```
+
+## extra first two rows, first two columns
+
+use `:` to define a range with start number and ending number
+
+```{r}
+df[1:2, 1:2]
+
+```
+
+------------------------------------------------------------------------
+
+# OPERATORS
+
+------------------------------------------------------------------------
+
+-   Arithmetic Operators
+-   Relational Operators
+-   Logical Operators
+-   Assignment Operators
+
+## arithmetic operators
+
+```{r}
+v1 = c(1, 2, 3, 4)
+v2 = c(100, 200, 300, 400)
+print(v1+10) # add 10 to each element
+print(v1-4)
+print(v1*10)
+print(v1/2)
+print(v1+v2) # two vectors must be same length
+print(v1-v2)
+print(v1*v2)
+print(v1/v2)
+print(v2%%(v1+9))
+print(v2^v1)
+
+```
+
+## relational operators
+
+Each element of the first vector is compared to the corresponding element of the second vector. The result of each comparison is a Boolean value.
+
+```{r}
+v1 = c(1,   3,   5, 7, 9)
+v2 = c(100, 300, 5, 1, 1)
+print(v1>v2) # one to one element comparison for two list
+print(v1<v2)
+print(v1==v2)
+print(v1!=v2)
+print(v1>=v2)
+print(v1<=v2)
+print(v1>7) # compare each element from the list to simple value 7
+
+```
+
+## logical operators
+
+-   `&` : and
+-   `|` : or
+-   `!` : not
+-   `&&` : compare only the first element
+-   `||`: compare only the first element
+
+```{r}
+v3 = c(T, T, T, F, F)
+v4 = c(F, F, T, F, F)
+print(v3&v4)
+print(v3|v4)
+print(!v3)
+print(!v4)
+
+```
+
+**when the length of two vector is not the same, the shorter vector will replicate itself to match the length**
+
+```{r}
+v5 <- c(100, 200, 300, 400, 500, 600)
+v6 <- c(1,2)
+print(v5+v6) # v6 becomes c(1,2,1,2,1,2) while performing the operation
+
+```
+
+**filtering with logical operator**
+
+```{r}
+r = 1:100
+r
+(r>50) # generates a list of TRUE or FALSE values
+(r%%2)
+(r%%2==0)
+r[r%%2==0] # returns all the elements that are dividable by 2
+r[r>50] # returns all the elements that are greater than 50
+r[r%%2==0 & r>50] # multiple conditions
+```
+
+## assignment operators
+
+-   leftward assignment: `=`, `<-`, `<<-`
+-   rightward assignment: `->`, `->>`
+
+**sequence operator** `:`
+
+```{r}
+s = 1:10
+s
+
+```
+
+**check if an element exists: use `%in%`**
+
+We previously defined: `fruits <- c("apple", "banana", "orange")`
+
+```{r}
+"apple" %in% fruits # returns TRUE
+"pear" %in% fruits # returns FALSE
+
+```
+
+------------------------------------------------------------------------
+
+# PROGRAM CONTROL: CONDITION
+
+------------------------------------------------------------------------
+
+```{r}
+is.student = F
+if (is.student) {
+  print("20% OFF")
+} else {
+    print("No. Discount.")
+}
+
+```
+
+**you can further chain up "else if" for more complex conditions checking**
+
+```{r}
+number <- 101
+if(number >= 1000) {
+  print("it's a 4 digit number or above")
+} else if (number>=100) {
+  print("it's a 3 digit number ")
+} else if (number>10) {
+  print("it's a 2 digit number ")
+} else {
+  print("it's a 1 digit number ")
+}
+
+```
+
+------------------------------------------------------------------------
+
+# PROGRAM CONTROL: LOOPING
+
+------------------------------------------------------------------------
+
+## for loop
+
+```{r}
+for (fruit in fruits){
+  print(fruit)
+}
+```
+
+## while loop
+
+```{r}
+number <- 0
+while (number < 10) {
+  print(number)
+  number = number + 1
+}
+```
+
+------------------------------------------------------------------------
+
+# FUNCTION
+
+------------------------------------------------------------------------
+
+## built-in functions
+
+```{r}
+r = 1:100
+print(max(r)) # maximum value
+print(min(r)) # minimal value
+print(mean(r)) # mean value
+print(sum(r)) # summation
+
+```
+
+## string function `paste()`
+
+```{r}
+a <- "How"
+b <- 'Are'
+c <- "You"
+print(paste(a,b,c))
+print(paste(a,b,c, sep = "-"))
+
+```
+
+## convert text to upper-case or to lower-case
+
+```{r}
+my.name <- "Johnny"
+toupper(my.name) # to upper case
+tolower(my.name) # to lower case
+nchar(my.name) # number of character in the string
+substring(my.name, 1 , 3) # returns "Joh"
+substring(my.name, 4) # returns "nny"
+
+```
+
+## formatting numbers
+
+```{r}
+salary = 12345.6789
+typeof(salary)
+format(salary, digits=5) # gives 12346
+format(salary, digits=6) # gives 12345.7
+format(salary, nsmall=2) # gives 12345.68
+?format
+
+```
+
+## `c()` function / combine function
+
+```{r}
+about.me = c("Johnny", 25, TRUE)
+about.me # number and boolean are converted to characters
+about.me[1] # index starts at 1
+
+```
+
+## define your own function
+
+```{r}
+mysquare <- function(number) {
+  return (number * number)
+}
+print(mysquare(3))
+
+```
+
+## filtering vectors
+
+```{r}
+days <- c("Sun","Mon","Tue","Wed","Thurs","Fri","Sat")
+(selected_days = days[c(1,3,5)])
+(selected_days = days[c(T,F,F,F,F,F,T)])
+(selected_days = days[c(-1,-7)]) # use '-" sign to indicate exclusion of element
+
+```
+
+## sorting vector
+
+```{r}
+sort(days) # alphabet sorting
+sort(days, decreasing = TRUE) # alphabet sorting
+numbers = c(1,9,5,7,3)
+sort(numbers)
+sort(numbers, decreasing = TRUE)
+
+```
+
+------------------------------------------------------------------------
+
+# SAMPLE DATASET
+
+------------------------------------------------------------------------
+
+```{r}
+library(datasets) # load dataset from built-in library
+iris
+typeof(iris)
+?iris
+summary(iris)
+head(iris)
+hist(iris$Sepal.Width)
+plot(iris)
+
+```
+
+------------------------------------------------------------------------
+
+# PREPARE FOR NEXT SESSIONS
+
+------------------------------------------------------------------------
+
+-   We will talk about packages next session
+-   Downloading packages will take some times, so run the following command to download packages that we will need for next sessions in advance
+
+```{r}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(pacman, party, psych, rio, tidyverse)
+
+```
+
+You will see console displaying packages download one by one

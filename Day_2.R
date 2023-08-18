@@ -16,11 +16,11 @@
 
 # load from built-in library (a.k.a base R)
 library("datasets") # or require("datasets")
-# library() vs. require() 
+# library() vs. require()
 # The library() by default returns an error if the requested package does not exist.
-# The require() is designed to be used inside functions 
-# as it gives a warning message and returns a logical value 
-# say, FALSE if the requested package is not found 
+# The require() is designed to be used inside functions
+# as it gives a warning message and returns a logical value
+# say, FALSE if the requested package is not found
 # and TRUE if the package is loaded.
 
 library(help = 'datasets') # display help information about built-in data-sets
@@ -48,7 +48,7 @@ sd(iris$Sepal.Length) # standard deviation
 
 
 
-# READING DATA #################################################################
+# READING DATA FILES ###########################################################
 
 # show current working directory
 getwd() #  get working directory
@@ -146,7 +146,7 @@ class(interbank)
 names(interbank) # return the names of child properties
 
 # Open up your JSON file in a browser to view JSON data structure
-# Firefox support JSON beutifying by default to make it more readable
+# Firefox supports JSON beautifying by default to make it more readable
 # For Google Chrome, you will have to install extra extension for readability
 
 ## accessing JSON data =========================================================
@@ -196,6 +196,8 @@ plot(graduates$Undergraduate,
      
 )
 ?plot
+
+
 ## bar plot ====================================================================
 barplot(graduates$Undergraduate)
 barplot(graduates$Undergraduate,
@@ -258,7 +260,7 @@ barplot(graduates$Undergraduate, col = "#009900") # use RGB Hex Code String
 colors()[400]
 barplot(graduates$Undergraduate, col = colors()[400]) # use color index
 
-# use TWO color alternatively
+# use TWO colors alternatively
 barplot(graduates$Undergraduate, col = c("navy", "orange")) 
 
 ## using  palette ===============================================================
@@ -286,15 +288,14 @@ browseURL("https://www.r-bloggers.com/2012/10/palettes-in-r/")
 # WHAT ARE PACKAGES? ###########################################################
 # R provides many free packages (16xxx packages) to add
 # data processing power to your R
-# R packages are a collection of R functions, complied code and sample data. 
-# They are stored under a directory called "library" in the R environment. 
-# By default, R installs a set of packages during installation. 
-# More packages are added later, when they are needed for some specific purpose. 
-# When we start the R console, only the default packages are available by default. 
-# Other packages which are already installed have to be loaded explicitly 
+# R packages are a collection of R functions, complied code and sample data.
+# They are stored under a directory called "library" in the R environment.
+# By default, R installs a set of packages during installation.
+# More packages are added later, when they are needed for some specific purpose.
+# When we start the R console, only the default packages are available by default.
+# Other packages which are already installed have to be loaded explicitly
 # to be used by the R program that is going to use them.
-
-# Notes: some packages installation might require re-start R studio 
+# Notes: some packages installation might require re-start R studio
 # to take effective
 
 ## packages listing =============================================================
@@ -352,7 +353,7 @@ browseURL("https://stringr.tidyverse.org/")
 
 ## importing JSON using add-ons ================================================
 
-# REMOVE the following TWO lines to test import json data
+# Uncomment the following lines to test import json data
 # interbank.liquidity <- import("data/daily-figures-interbank-liquidity.json")
 # summary(interbank.liquidity)
 # names(interbank.liquidity)
@@ -521,21 +522,6 @@ p_unload(all)
 
 
 
-# R MARKDOWN ###################################################################
-# R Markdown documents are fully reproducible. 
-# Use a productive notebook interface 
-# to weave together narrative text and code to produce elegantly formatted output. 
-# Use multiple languages including R, Python, and SQL.
-
-# to create a R notebook that use R Markdown
-# choose File -> New -> R Notebook
-
-# To export notebook and output
-# reach out to "Knit" -> choose HTML/PDF/Word
-
-
-# more on R Markdown
-browseURL("https://rmarkdown.rstudio.com/")
 
 
 
@@ -625,3 +611,20 @@ browseURL("https://r4ds.had.co.nz/")
 # R Packages
 browseURL("https://cran.r-project.org/web/packages/index.html")
 
+
+
+# R MARKDOWN ###################################################################
+# R Markdown documents are fully reproducible. 
+# Use a productive notebook interface 
+# to weave together narrative text and code to produce elegantly formatted output. 
+# Use multiple languages including R, Python, and SQL.
+
+# to create a R notebook that use R Markdown
+# choose File -> New -> R Notebook
+
+# To export notebook and output
+# reach out to "Knit" -> choose HTML/PDF/Word
+
+
+# more on R Markdown
+browseURL("https://rmarkdown.rstudio.com/")
