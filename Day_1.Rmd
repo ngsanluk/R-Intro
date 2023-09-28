@@ -9,7 +9,7 @@ output: html_notebook
 
 ------------------------------------------------------------------------
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+This is a [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
 
 ## To run a chunk of codes
 
@@ -553,8 +553,6 @@ print(v1>7) # compare each element from the list to simple value 7
 -   `&` : and
 -   `|` : or
 -   `!` : not
--   `&&` : compare only the first element
--   `||`: compare only the first element
 
 ```{r}
 v3 = c(T, T, T, F, F)
