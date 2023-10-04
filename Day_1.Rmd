@@ -74,6 +74,14 @@ Move Line(s) Up/Down: **ALT+UP/DOWN** to move line(s) up or down
 
 More useful keyboard shortcuts: [R Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
 
+```{r}
+print(100)
+print(200)
+print(300)
+print(400)
+print(500)
+```
+
 ------------------------------------------------------------------------
 
 # GETTING HELPS
@@ -246,7 +254,7 @@ is.atomic(fruits) # returns TRUE
 is.list(fruits) # returns FALSE
 ```
 
-## upper-case / lower-case converstion
+## upper-case / lower-case conversion
 
 About [ASCII Codes](https://en.m.wikipedia.org/wiki/File:ASCII-Table-wide.svg)
 
@@ -452,7 +460,7 @@ typeof(df) # return list
 mode(df) # return list
 ```
 
-## ise `$` symbol to refer to column
+## Use `$` symbol to refer to column
 
 ```{r}
 df$name # use '$' sign to indicate column name getting the 'name' column
@@ -467,6 +475,8 @@ is.vector(df[1,])
 class(df[1,])
 df[,1] # get the first col
 df[1] # get the first col, return as data.frame
+df[,2]  # get the second col
+df[2]  # get the second col, return as data.frame
 ```
 
 The above seems to give identical result, their types are different. Let's check the return types.
