@@ -290,6 +290,17 @@ my.name = "sunny"
 
 ```
 
+tolower() and to toupper() functions are built-in
+
+```{r}
+staff1 = "john"
+staff2 = "EVA"
+print(staff1)
+print(staff2)
+print(toupper(staff1))
+print(tolower(staff2))
+```
+
 ------------------------------------------------------------------------
 
 # CHECKING TYPES: `typeof()`, `class()`, `mode()`
@@ -352,7 +363,7 @@ my.list$fruites[1]
 ------------------------------------------------------------------------
 
 ```{r}
-r = 1:10
+r = 11:20
 r
 r[1]
 length(r)
@@ -586,14 +597,14 @@ print(v5+v6) # v6 becomes c(1,2,1,2,1,2) while performing the operation
 **filtering with logical operator**
 
 ```{r}
-r = 1:100
+r = 101:200
 r
-(r>50) # generates a list of TRUE or FALSE values
+(r>150) # generates a list of TRUE or FALSE values
 (r%%2)
 (r%%2==0)
 r[r%%2==0] # returns all the elements that are dividable by 2
-r[r>50] # returns all the elements that are greater than 50
-r[r%%2==0 & r>50] # multiple conditions
+r[r>150] # returns all the elements that are greater than 150
+r[r%%2==0 & r>150] # multiple conditions
 ```
 
 ## assignment operators
