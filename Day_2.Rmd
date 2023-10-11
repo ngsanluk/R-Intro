@@ -450,7 +450,7 @@ colnames(df) # returns the column names of a data frame
 
 ```
 
-reading another csv: use ing `import()` function
+reading another csv: useing `import()` function
 
 ```{r}
 df.sal <- import("data/Salaries.csv") # import is a function from add-on
@@ -470,7 +470,7 @@ installed.packages("tidyverse") # for tidying up data and more function
 
 ```
 
-More on tydyverse: [Tidyverse](https://www.tidyverse.org/)
+More on tidyverse: [Tidyverse](https://www.tidyverse.org/)
 
 ## loading stringr
 
