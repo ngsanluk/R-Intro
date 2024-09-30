@@ -5,6 +5,46 @@ output: html_notebook
 
 ------------------------------------------------------------------------
 
+# R SCRIPT VS. R-MARKDOWN
+
+------------------------------------------------------------------------
+
+## R Markdown Formats & Options
+
+Press the **gear** icon next to **Preview** button.
+
+You will see the document in the format of rendered markdown.
+
+Let's give it a try.
+
+## R MARKDOWN OUTPUT
+
+Press **Preview** button to see preview of default output.
+
+Press the **Down** arrow next to **Preview** button to choose a file format to knit.
+
+## Use Notebook or Markdown?
+
+They are pretty much equivalent or at least convertible.
+
+Only different by automatic-added mark-down options at the beginning of document.
+
+If you are primarily doing analysis in the Notebook environment, choose **Notebook**.
+
+If you are primarily aiming to create a PDF or Word document, choose **R Markdown** file.
+
+## More on Markdown
+
+Reach out to: **Help : Markdown Quick Reference**
+
+Or browse the this page [rstudio lession 1](https://rmarkdown.rstudio.com/lesson-1.html)
+
+```{r browse rmarkdown lesson}
+browseURL("https://rmarkdown.rstudio.com/lesson-1.html")
+```
+
+------------------------------------------------------------------------
+
 # INTERACTING WITH R-NOTEBOOK
 
 ------------------------------------------------------------------------

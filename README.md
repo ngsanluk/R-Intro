@@ -1,5 +1,6 @@
 # R-Intro
 Covers the following topics
+- R Script and R Markdown
 - Hands on R
 - Basic Syntax
 - Using Help
@@ -22,4 +23,4 @@ Covers the following topics
 - Handling Complex Command
 - R Markdown
 - Statistics Features: Mean, Median, Regression
-- Further Learning Resources- 
+- Further Learning Resources
