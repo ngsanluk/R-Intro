@@ -168,7 +168,10 @@ as.numeric(substring(graduates$AcademicYear, 1, 4)) - 2000
 
 JSON file stores data as text in human-readable format. However, JSON files are targeted to read by programs. JSON stands for JavaScript Object Notation
 
-R can read JSON files using the rjson package or others. JSON is very popular to present web api data. \* Example: fixer.io for foreign exchange \* Example: Google Geocoding: for location searching
+R can read JSON files using the rjson package or others. JSON is very popular to present web api data.
+
+-   Example: fixer.io for foreign exchange
+-   Example: Google Geocoding: for location searching
 
 **install required package**
 
@@ -389,7 +392,9 @@ Color is very a dominant design tool to guide user's attention Over-use or mista
 
 ------------------------------------------------------------------------
 
-R provides many free packages (16xxx packages) to add data processing power to your R. R packages are a collection of R functions, complied code and sample data. They are stored under a directory called "library" in the R environment. By default, R installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the R console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the R program that is going to use them. Notes: some packages installation might require re-start R studio to take effective.
+R provides many free packages (24xxx packages) to add data processing power to your R. R packages are a collection of R functions, complied code and sample data. They are stored under a directory called "library" in the R environment. By default, R installs a set of packages during installation. More packages are added later, when they are needed for some specific purpose. When we start the R console, only the default packages are available by default. Other packages which are already installed have to be loaded explicitly to be used by the R program that is going to use them.
+
+Notes: some packages installation might require re-start R studio to take effective.
 
 ## packages listing
 
@@ -410,7 +415,7 @@ syntax:
 
 ## to install multiple packages
 
-syntaxt:
+syntax:
 
 `install.packages("Package1", "Package2")`
 
@@ -450,7 +455,7 @@ colnames(df) # returns the column names of a data frame
 
 ```
 
-reading another csv: useing `import()` function
+reading another csv: using `import()` function
 
 ```{r}
 df.sal <- import("data/Salaries.csv") # import is a function from add-on
@@ -472,7 +477,7 @@ installed.packages("tidyverse") # for tidying up data and more function
 
 More on tidyverse: [Tidyverse](https://www.tidyverse.org/)
 
-## loading stringr
+## loading `stringr`
 
 ```{r}
 library(stringr)
@@ -567,7 +572,7 @@ Exercise: Retrieving live JSON data from HKMA [Daily Interbank Liquidity](https:
 
 ## exercise: practicing web json
 
-accessing interbank liquidity data from open data
+accessing inter-bank liquidity data from open data
 
 ```{r}
 hkma.interbank.url = "https://api.hkma.gov.hk/public/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity"
@@ -633,17 +638,6 @@ detach("package:datasets", unload=TRUE) # unloads base library
 
 ```
 
-## clean console screen
-
--   press "Clean console" icon
--   keyboard shortcut: CTRL+L
--   or reaching out to the clean button on console window (upper right)
-
-```{r}
-cat("\014")
-
-```
-
 ------------------------------------------------------------------------
 
 # HANDLING COMPLEX CODES
@@ -667,7 +661,7 @@ plot(x = df.iris$Sepal.Length,
 
 ```
 
-## piping commands
+## piping commands: `%>%`
 
 Nested functions calls becomes really messy and difficult to read especially when each function has multiple parameters.
 
